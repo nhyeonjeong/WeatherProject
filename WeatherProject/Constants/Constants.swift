@@ -13,6 +13,7 @@ enum Constants {
         static let normal = UIColor(named: "blue")
         static let point = UIColor(named: "darkBlue")
         static let searchBarTint = UIColor(ciColor: .gray)
+        static let text = UIColor(ciColor: .white)
     }
     
     enum Constraint {

@@ -28,6 +28,8 @@
 		8B6AD5002C54081800E7BB8E /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6AD4FF2C54081800E7BB8E /* CustomSearchBar.swift */; };
 		8B6AD5032C540E2700E7BB8E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6AD5022C540E2700E7BB8E /* Constants.swift */; };
 		8B6AD5062C54129400E7BB8E /* reduced_citylist.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B6AD5052C54129400E7BB8E /* reduced_citylist.json */; };
+		8B6AD5082C54136B00E7BB8E /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6AD5072C54136B00E7BB8E /* BaseTableViewCell.swift */; };
+		8B6AD50A2C54140F00E7BB8E /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6AD5092C54140F00E7BB8E /* CityTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,8 @@
 		8B6AD4FF2C54081800E7BB8E /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		8B6AD5022C540E2700E7BB8E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8B6AD5052C54129400E7BB8E /* reduced_citylist.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = reduced_citylist.json; sourceTree = "<group>"; };
+		8B6AD5072C54136B00E7BB8E /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		8B6AD5092C54140F00E7BB8E /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +130,7 @@
 			children = (
 				8B6AD4F72C53FEAB00E7BB8E /* WeatherSearchView.swift */,
 				8B6AD4FC2C54056000E7BB8E /* WeatherSearchViewController.swift */,
+				8B6AD5092C54140F00E7BB8E /* CityTableViewCell.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -135,6 +140,7 @@
 			children = (
 				8B6AD4D12C53F4E800E7BB8E /* BaseViewController.swift */,
 				8B6AD4D32C53F57B00E7BB8E /* BaseView.swift */,
+				8B6AD5072C54136B00E7BB8E /* BaseTableViewCell.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -260,9 +266,11 @@
 				8B6AD5032C540E2700E7BB8E /* Constants.swift in Sources */,
 				8B6AD4B92C53DFD000E7BB8E /* ViewController.swift in Sources */,
 				8B6AD5002C54081800E7BB8E /* CustomSearchBar.swift in Sources */,
+				8B6AD5082C54136B00E7BB8E /* BaseTableViewCell.swift in Sources */,
 				8B6AD4FD2C54056000E7BB8E /* WeatherSearchViewController.swift in Sources */,
 				8B6AD4FB2C53FEC700E7BB8E /* UIView+Extension.swift in Sources */,
 				8B6AD4B52C53DFD000E7BB8E /* AppDelegate.swift in Sources */,
+				8B6AD50A2C54140F00E7BB8E /* CityTableViewCell.swift in Sources */,
 				8B6AD4D42C53F57B00E7BB8E /* BaseView.swift in Sources */,
 				8B6AD4CD2C53F12C00E7BB8E /* APIKey.swift in Sources */,
 				8B6AD4B72C53DFD000E7BB8E /* SceneDelegate.swift in Sources */,

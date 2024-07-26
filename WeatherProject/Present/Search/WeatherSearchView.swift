@@ -17,9 +17,10 @@ final class WeatherSearchView: BaseView {
         return view
     }()
     
-    private let cityTableView: UITableView = {
+    let cityTableView: UITableView = {
         let view = UITableView()
         view.backgroundColor = .clear
+        view.register(CityTableViewCell.self, forCellReuseIdentifier: CityTableViewCell.identifier)
         return view
     }()
     
@@ -32,9 +33,8 @@ final class WeatherSearchView: BaseView {
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(Constants.Constraint.safeAreaInset)
         }
         cityTableView.snp.makeConstraints { make in
-            make.top.equalTo(searchBar.snp.bottom).offset(Constants.Constraint.safeAreaInset)
-            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(Constants.Constraint.safeAreaInset)
-            make.bottom.equalTo(safeAreaLayoutGuide)
+            make.top.equalTo(searchBar.snp.bottom).offset(14)
+            make.horizontalEdges.bottom.equalTo(safeAreaLayoutGuide)
         }
     }
     override func configureView() {
