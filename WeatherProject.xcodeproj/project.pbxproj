@@ -17,6 +17,11 @@
 		8B6AD4CD2C53F12C00E7BB8E /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6AD4CC2C53F12C00E7BB8E /* APIKey.swift */; };
 		8B6AD4D22C53F4E800E7BB8E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6AD4D12C53F4E800E7BB8E /* BaseViewController.swift */; };
 		8B6AD4D42C53F57B00E7BB8E /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6AD4D32C53F57B00E7BB8E /* BaseView.swift */; };
+		8B6AD4EC2C53FDEE00E7BB8E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B6AD4EB2C53FDEE00E7BB8E /* SnapKit */; };
+		8B6AD4EF2C53FE1C00E7BB8E /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 8B6AD4EE2C53FE1C00E7BB8E /* RxCocoa */; };
+		8B6AD4F12C53FE1C00E7BB8E /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 8B6AD4F02C53FE1C00E7BB8E /* RxRelay */; };
+		8B6AD4F32C53FE1C00E7BB8E /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8B6AD4F22C53FE1C00E7BB8E /* RxSwift */; };
+		8B6AD4F62C53FE2400E7BB8E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8B6AD4F52C53FE2400E7BB8E /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +44,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B6AD4F62C53FE2400E7BB8E /* Alamofire in Frameworks */,
+				8B6AD4F12C53FE1C00E7BB8E /* RxRelay in Frameworks */,
+				8B6AD4EF2C53FE1C00E7BB8E /* RxCocoa in Frameworks */,
+				8B6AD4F32C53FE1C00E7BB8E /* RxSwift in Frameworks */,
+				8B6AD4EC2C53FDEE00E7BB8E /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +137,13 @@
 			dependencies = (
 			);
 			name = WeatherProject;
+			packageProductDependencies = (
+				8B6AD4EB2C53FDEE00E7BB8E /* SnapKit */,
+				8B6AD4EE2C53FE1C00E7BB8E /* RxCocoa */,
+				8B6AD4F02C53FE1C00E7BB8E /* RxRelay */,
+				8B6AD4F22C53FE1C00E7BB8E /* RxSwift */,
+				8B6AD4F52C53FE2400E7BB8E /* Alamofire */,
+			);
 			productName = WeatherProject;
 			productReference = 8B6AD4B12C53DFD000E7BB8E /* WeatherProject.app */;
 			productType = "com.apple.product-type.application";
@@ -155,6 +172,11 @@
 				Base,
 			);
 			mainGroup = 8B6AD4A82C53DFD000E7BB8E;
+			packageReferences = (
+				8B6AD4EA2C53FDEE00E7BB8E /* XCRemoteSwiftPackageReference "SnapKit" */,
+				8B6AD4ED2C53FE1C00E7BB8E /* XCRemoteSwiftPackageReference "RxSwift" */,
+				8B6AD4F42C53FE2400E7BB8E /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 8B6AD4B22C53DFD000E7BB8E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -417,6 +439,61 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8B6AD4EA2C53FDEE00E7BB8E /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		8B6AD4ED2C53FE1C00E7BB8E /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.7.1;
+			};
+		};
+		8B6AD4F42C53FE2400E7BB8E /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8B6AD4EB2C53FDEE00E7BB8E /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B6AD4EA2C53FDEE00E7BB8E /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		8B6AD4EE2C53FE1C00E7BB8E /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B6AD4ED2C53FE1C00E7BB8E /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		8B6AD4F02C53FE1C00E7BB8E /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B6AD4ED2C53FE1C00E7BB8E /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		8B6AD4F22C53FE1C00E7BB8E /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B6AD4ED2C53FE1C00E7BB8E /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		8B6AD4F52C53FE2400E7BB8E /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B6AD4F42C53FE2400E7BB8E /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8B6AD4A92C53DFD000E7BB8E /* Project object */;
 }
