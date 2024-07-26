@@ -12,18 +12,17 @@ final class CustomSearchBar: BaseView {
     let searchBarBox: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 8
-        view.backgroundColor = .cyan
         return view
     }()
     
-    let magnifyingglassIcon: UIImageView = {
+    private let magnifyingglassIcon: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(systemName: "magnifyingglass")
-        view.tintColor = .gray
+        view.tintColor = Constants.Color.searchBarTint
         return view
     }()
     
-    let textfield: UITextField = {
+    private let textfield: UITextField = {
         let view = UITextField()
         view.placeholder = "    Search"
         return view

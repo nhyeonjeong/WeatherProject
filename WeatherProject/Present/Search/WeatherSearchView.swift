@@ -10,15 +10,16 @@ import SnapKit
 
 final class WeatherSearchView: BaseView {
 
-    let searchBar: CustomSearchBar = {
+    private let searchBar: CustomSearchBar = {
         let view = CustomSearchBar()
-        view.backgroundColor = .systemBlue
+        view.layer.cornerRadius = 8
+        view.searchBarBox.backgroundColor = Constants.Color.normal
         return view
     }()
     
-    let cityTableView: UITableView = {
+    private let cityTableView: UITableView = {
         let view = UITableView()
-        view.backgroundColor = .yellow
+        view.backgroundColor = .clear
         return view
     }()
     
@@ -27,16 +28,16 @@ final class WeatherSearchView: BaseView {
     }
     override func configureConstratinst() {
         searchBar.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide).inset(10)
-            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(10)
+            make.top.equalTo(safeAreaLayoutGuide).inset(Constants.Constraint.safeAreaInset)
+            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(Constants.Constraint.safeAreaInset)
         }
         cityTableView.snp.makeConstraints { make in
-            make.top.equalTo(searchBar.snp.bottom).offset(10)
-            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(10)
+            make.top.equalTo(searchBar.snp.bottom).offset(Constants.Constraint.safeAreaInset)
+            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(Constants.Constraint.safeAreaInset)
             make.bottom.equalTo(safeAreaLayoutGuide)
         }
     }
     override func configureView() {
-        backgroundColor = .lightGray
+        backgroundColor = Constants.Color.point
     }
 }

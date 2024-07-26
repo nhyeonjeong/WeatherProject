@@ -26,6 +26,7 @@
 		8B6AD4FB2C53FEC700E7BB8E /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6AD4FA2C53FEC700E7BB8E /* UIView+Extension.swift */; };
 		8B6AD4FD2C54056000E7BB8E /* WeatherSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6AD4FC2C54056000E7BB8E /* WeatherSearchViewController.swift */; };
 		8B6AD5002C54081800E7BB8E /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6AD4FF2C54081800E7BB8E /* CustomSearchBar.swift */; };
+		8B6AD5032C540E2700E7BB8E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6AD5022C540E2700E7BB8E /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		8B6AD4FA2C53FEC700E7BB8E /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		8B6AD4FC2C54056000E7BB8E /* WeatherSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherSearchViewController.swift; sourceTree = "<group>"; };
 		8B6AD4FF2C54081800E7BB8E /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
+		8B6AD5022C540E2700E7BB8E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 		8B6AD4B32C53DFD000E7BB8E /* WeatherProject */ = {
 			isa = PBXGroup;
 			children = (
+				8B6AD5012C540E1700E7BB8E /* Constants */,
 				8B6AD4CB2C53F11C00E7BB8E /* API */,
 				8B6AD4F92C53FEBE00E7BB8E /* Extension */,
 				8B6AD4D02C53F4D700E7BB8E /* Base */,
@@ -147,6 +150,14 @@
 				8B6AD4FF2C54081800E7BB8E /* CustomSearchBar.swift */,
 			);
 			path = CustomView;
+			sourceTree = "<group>";
+		};
+		8B6AD5012C540E1700E7BB8E /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				8B6AD5022C540E2700E7BB8E /* Constants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B6AD4D22C53F4E800E7BB8E /* BaseViewController.swift in Sources */,
+				8B6AD5032C540E2700E7BB8E /* Constants.swift in Sources */,
 				8B6AD4B92C53DFD000E7BB8E /* ViewController.swift in Sources */,
 				8B6AD5002C54081800E7BB8E /* CustomSearchBar.swift in Sources */,
 				8B6AD4FD2C54056000E7BB8E /* WeatherSearchViewController.swift in Sources */,
