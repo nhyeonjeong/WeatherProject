@@ -22,6 +22,10 @@
 		8B6AD4F12C53FE1C00E7BB8E /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 8B6AD4F02C53FE1C00E7BB8E /* RxRelay */; };
 		8B6AD4F32C53FE1C00E7BB8E /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8B6AD4F22C53FE1C00E7BB8E /* RxSwift */; };
 		8B6AD4F62C53FE2400E7BB8E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8B6AD4F52C53FE2400E7BB8E /* Alamofire */; };
+		8B6AD4F82C53FEAB00E7BB8E /* WeatherSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6AD4F72C53FEAB00E7BB8E /* WeatherSearchView.swift */; };
+		8B6AD4FB2C53FEC700E7BB8E /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6AD4FA2C53FEC700E7BB8E /* UIView+Extension.swift */; };
+		8B6AD4FD2C54056000E7BB8E /* WeatherSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6AD4FC2C54056000E7BB8E /* WeatherSearchViewController.swift */; };
+		8B6AD5002C54081800E7BB8E /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6AD4FF2C54081800E7BB8E /* CustomSearchBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +41,10 @@
 		8B6AD4CC2C53F12C00E7BB8E /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		8B6AD4D12C53F4E800E7BB8E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		8B6AD4D32C53F57B00E7BB8E /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		8B6AD4F72C53FEAB00E7BB8E /* WeatherSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherSearchView.swift; sourceTree = "<group>"; };
+		8B6AD4FA2C53FEC700E7BB8E /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		8B6AD4FC2C54056000E7BB8E /* WeatherSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherSearchViewController.swift; sourceTree = "<group>"; };
+		8B6AD4FF2C54081800E7BB8E /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,9 +83,11 @@
 		8B6AD4B32C53DFD000E7BB8E /* WeatherProject */ = {
 			isa = PBXGroup;
 			children = (
-				8B6AD4D02C53F4D700E7BB8E /* Base */,
-				8B6AD4CE2C53F48300E7BB8E /* Present */,
 				8B6AD4CB2C53F11C00E7BB8E /* API */,
+				8B6AD4F92C53FEBE00E7BB8E /* Extension */,
+				8B6AD4D02C53F4D700E7BB8E /* Base */,
+				8B6AD4FE2C5407BD00E7BB8E /* CustomView */,
+				8B6AD4CE2C53F48300E7BB8E /* Present */,
 				8B6AD4B42C53DFD000E7BB8E /* AppDelegate.swift */,
 				8B6AD4B62C53DFD000E7BB8E /* SceneDelegate.swift */,
 				8B6AD4B82C53DFD000E7BB8E /* ViewController.swift */,
@@ -108,6 +118,8 @@
 		8B6AD4CF2C53F48D00E7BB8E /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				8B6AD4F72C53FEAB00E7BB8E /* WeatherSearchView.swift */,
+				8B6AD4FC2C54056000E7BB8E /* WeatherSearchViewController.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -119,6 +131,22 @@
 				8B6AD4D32C53F57B00E7BB8E /* BaseView.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		8B6AD4F92C53FEBE00E7BB8E /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				8B6AD4FA2C53FEC700E7BB8E /* UIView+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		8B6AD4FE2C5407BD00E7BB8E /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				8B6AD4FF2C54081800E7BB8E /* CustomSearchBar.swift */,
+			);
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,10 +235,14 @@
 			files = (
 				8B6AD4D22C53F4E800E7BB8E /* BaseViewController.swift in Sources */,
 				8B6AD4B92C53DFD000E7BB8E /* ViewController.swift in Sources */,
+				8B6AD5002C54081800E7BB8E /* CustomSearchBar.swift in Sources */,
+				8B6AD4FD2C54056000E7BB8E /* WeatherSearchViewController.swift in Sources */,
+				8B6AD4FB2C53FEC700E7BB8E /* UIView+Extension.swift in Sources */,
 				8B6AD4B52C53DFD000E7BB8E /* AppDelegate.swift in Sources */,
 				8B6AD4D42C53F57B00E7BB8E /* BaseView.swift in Sources */,
 				8B6AD4CD2C53F12C00E7BB8E /* APIKey.swift in Sources */,
 				8B6AD4B72C53DFD000E7BB8E /* SceneDelegate.swift in Sources */,
+				8B6AD4F82C53FEAB00E7BB8E /* WeatherSearchView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
