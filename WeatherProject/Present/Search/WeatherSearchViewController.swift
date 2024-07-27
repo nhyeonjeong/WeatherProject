@@ -7,6 +7,7 @@
 
 import RxCocoa
 import RxSwift
+import Toast
 import UIKit
 
 final class WeatherSearchViewController: BaseViewController {
@@ -46,6 +47,13 @@ final class WeatherSearchViewController: BaseViewController {
         output.outputTableViewItems
             .drive(mainView.cityTableView.rx.items(cellIdentifier: CityTableViewCell.identifier, cellType: CityTableViewCell.self)) {(row, element, cell) in
                 cell.configureCell(element)
+            }.disposed(by: disposeBag)
+        
+        output.outputErrorToastMessage
+            .drive(with: self) { owner, message in
+                DispatchQueue.main.async {
+                    owner.view.makeToast(message, duration: 1.0, position: .center)
+                }
             }.disposed(by: disposeBag)
     }
 }

@@ -27,23 +27,27 @@ final class WeatherSearchViewModel: InputOutput {
     }
     struct Output {
         let outputTableViewItems: Driver<[CityModel]>
+        let outputErrorToastMessage: Driver<String>
     }
     
     let disposeBag: DisposeBag = DisposeBag()
     
     func transform(input: Input) -> Output {
         let outputTableViewItems = PublishRelay<[CityModel]>()
+        let outputErrorToastMessage = PublishRelay<String>()
         
         input.inputTextfieldTrigger.bind(with: self) { owner, text in
             guard let items = owner.searchJsonData() else {
                 // json -> CityModel로 변환하는 과정 중 실패 후 nil로 넘어왔을 시
                 // .추가
+                outputErrorToastMessage.accept("에러가 발생했습니다")
                 return
             }
             outputTableViewItems.accept(items)
         }.disposed(by: disposeBag)
         
-        return Output(outputTableViewItems: outputTableViewItems.asDriver(onErrorJustReturn: []))
+        return Output(outputTableViewItems: outputTableViewItems.asDriver(onErrorJustReturn: []),
+                      outputErrorToastMessage: outputErrorToastMessage.asDriver(onErrorJustReturn: "에러가 발생했습니다"))
     }
 }
 
