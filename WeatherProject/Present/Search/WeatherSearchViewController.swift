@@ -15,7 +15,7 @@ final class WeatherSearchViewController: BaseViewController {
     private let viewModel: WeatherSearchViewModel
     
     private let mainView = WeatherSearchView()
-    private let inputTextfieldTrigger: BehaviorRelay<String> = BehaviorRelay(value: "")
+    private let inputTextfieldTrigger: PublishRelay<Void> = PublishRelay()
     private let disposeBag: DisposeBag = DisposeBag()
     
     init(viewModel: WeatherSearchViewModel) {
@@ -31,8 +31,8 @@ final class WeatherSearchViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
-        // textfield 이벤트 전달
-        inputTextfieldTrigger.accept("")
+        // initial textfield 이벤트 전달
+        inputTextfieldTrigger.accept(())
     }
     
     deinit {
@@ -40,8 +40,8 @@ final class WeatherSearchViewController: BaseViewController {
     }
     
     private func bind() {
-        
-        let input = WeatherSearchViewModel.Input(inputTextfieldTrigger: inputTextfieldTrigger)
+//        mainView.searchBar.textfield.text = ""
+        let input = WeatherSearchViewModel.Input(inputTextfieldTrigger: inputTextfieldTrigger, inputTextField: mainView.searchBar.textfield.rx.text)
         let output = viewModel.transform(input: input)
         
         output.outputTableViewItems
