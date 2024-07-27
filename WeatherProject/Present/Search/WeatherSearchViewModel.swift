@@ -29,6 +29,7 @@ final class WeatherSearchViewModel: InputOutput {
     struct Output {
         let outputTableViewItems: Driver<[CityModel]>
         let outputErrorToastMessage: Driver<String>
+        let outputIsResultEmpty: Driver<Bool>
     }
     
     let disposeBag: DisposeBag = DisposeBag()
@@ -36,6 +37,7 @@ final class WeatherSearchViewModel: InputOutput {
     func transform(input: Input) -> Output {
         let outputTableViewItems = PublishRelay<[CityModel]>()
         let outputErrorToastMessage = PublishRelay<String>()
+        let outputIsResultEmpty = PublishRelay<Bool>()
         
         let searchCityTrigger = PublishSubject<String>()
         
@@ -60,11 +62,20 @@ final class WeatherSearchViewModel: InputOutput {
                     outputErrorToastMessage.accept("에러가 발생했습니다")
                     return
                 }
-                outputTableViewItems.accept(text == "" ? items : items.filter {$0.name.localizedCaseInsensitiveContains(text)})
+                let filteredItems = text == "" ? items : items.filter {$0.name.localizedCaseInsensitiveContains(text)}
+                outputTableViewItems.accept(filteredItems)
+                
+                if filteredItems.isEmpty {
+                    // 검색결과 없음
+                    outputIsResultEmpty.accept(true)
+                } else {
+                    outputIsResultEmpty.accept(false)
+                }
             }.disposed(by: disposeBag)
         
         return Output(outputTableViewItems: outputTableViewItems.asDriver(onErrorJustReturn: []),
-                      outputErrorToastMessage: outputErrorToastMessage.asDriver(onErrorJustReturn: "에러가 발생했습니다"))
+                      outputErrorToastMessage: outputErrorToastMessage.asDriver(onErrorJustReturn: "에러가 발생했습니다"),
+                      outputIsResultEmpty: outputIsResultEmpty.asDriver(onErrorJustReturn: false))
     }
 }
 

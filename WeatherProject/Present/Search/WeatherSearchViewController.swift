@@ -40,7 +40,6 @@ final class WeatherSearchViewController: BaseViewController {
     }
     
     private func bind() {
-//        mainView.searchBar.textfield.text = ""
         let input = WeatherSearchViewModel.Input(inputTextfieldTrigger: inputTextfieldTrigger, inputTextField: mainView.searchBar.textfield.rx.text)
         let output = viewModel.transform(input: input)
         
@@ -54,6 +53,12 @@ final class WeatherSearchViewController: BaseViewController {
                 DispatchQueue.main.async {
                     owner.view.makeToast(message, duration: 1.0, position: .center)
                 }
+            }.disposed(by: disposeBag)
+        
+        output.outputIsResultEmpty
+            .drive(with: self) { owner, value in
+                print("😎", value)
+                owner.mainView.showNoResultMessage(value)
             }.disposed(by: disposeBag)
     }
 }
