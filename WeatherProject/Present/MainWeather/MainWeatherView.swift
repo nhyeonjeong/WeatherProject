@@ -13,7 +13,7 @@ final class MainWeatherView: BaseView {
     private let scrollView = UIScrollView()
     private let contentView = UIView()
     // searchBar
-    private let searchBar = CustomSearchBar(backColor: Constants.Color.light)
+    let searchBar = CustomSearchBar(backColor: Constants.Color.light)
     // 최상단 최근 날씨
     private let mainWeatherView = UIView()
     private let cityNameLabel = UILabel().configureTextStyle(align: .center, fontSize: 28)
