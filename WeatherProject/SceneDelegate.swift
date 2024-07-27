@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: scene)
     
-        let rootViewCon = WeatherSearchViewController(viewModel: WeatherSearchViewModel())
+        let rootViewCon = MainWeatherViewController()
         window?.rootViewController = rootViewCon
         window?.makeKeyAndVisible()
     }

@@ -57,7 +57,6 @@ final class WeatherSearchViewController: BaseViewController {
         
         output.outputIsResultEmpty
             .drive(with: self) { owner, value in
-                print("😎", value)
                 owner.mainView.showNoResultMessage(value)
             }.disposed(by: disposeBag)
     }
