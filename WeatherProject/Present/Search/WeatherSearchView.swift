@@ -5,8 +5,8 @@
 //  Created by 남현정 on 2024/07/27.
 //
 
-import UIKit
 import SnapKit
+import UIKit
 
 final class WeatherSearchView: BaseView {
 

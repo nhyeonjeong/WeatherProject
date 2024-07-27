@@ -5,6 +5,7 @@
 //  Created by 남현정 on 2024/07/27.
 //
 
+import SnapKit
 import UIKit
 
 final class CustomSearchBar: BaseView {
