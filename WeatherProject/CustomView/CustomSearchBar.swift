@@ -10,7 +10,15 @@ import UIKit
 
 final class CustomSearchBar: BaseView {
     
-    let searchBarBox: UIView = {
+    init(backColor: UIColor?) {
+        super.init(frame: .zero)
+        self.searchBarBox.backgroundColor = backColor ?? .white
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private let searchBarBox: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 8
         return view
@@ -23,7 +31,7 @@ final class CustomSearchBar: BaseView {
         return view
     }()
     
-    private let textfield: UITextField = {
+    let textfield: UITextField = {
         let view = UITextField()
         view.placeholder = "    Search"
         return view

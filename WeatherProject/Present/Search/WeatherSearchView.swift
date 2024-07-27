@@ -10,12 +10,7 @@ import UIKit
 
 final class WeatherSearchView: BaseView {
 
-    private let searchBar: CustomSearchBar = {
-        let view = CustomSearchBar()
-        view.layer.cornerRadius = 8
-        view.searchBarBox.backgroundColor = Constants.Color.normal
-        return view
-    }()
+    let searchBar = CustomSearchBar(backColor: Constants.Color.normal)
     
     let cityTableView: UITableView = {
         let view = UITableView()
