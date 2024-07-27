@@ -56,7 +56,7 @@ final class CityTableViewCell: BaseTableViewCell {
 }
 
 extension CityTableViewCell {
-    func configureCell(_ data: WeatherSearchViewModel.CityModel) {
+    func configureCell(_ data: CityModel) {
         nameLabel.text = data.name
         countryLabel.text = data.country
     }

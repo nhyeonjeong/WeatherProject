@@ -10,18 +10,6 @@ import RxCocoa
 import RxSwift
 
 final class WeatherSearchViewModel: InputOutput {
-    struct CityModel: Decodable {
-        let id: Int
-        let name: String
-        let country: String
-        let coord: Coord
-    }
-    
-    struct Coord: Decodable {
-        let lon: Double
-        let lat: Double
-    }
-    
     struct Input {
         let inputTextfieldTrigger: PublishRelay<Void>
         let inputTextField: ControlProperty<String?>

@@ -7,6 +7,7 @@
 
 import Foundation
 
+// API통신을 위한 구조체
 struct CityWeatherModel: Decodable {
     let cnt: Int
     let list: [List]
