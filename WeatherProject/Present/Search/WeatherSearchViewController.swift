@@ -38,7 +38,7 @@ final class WeatherSearchViewController: BaseViewController {
         print("WeatherSearchViewCon Deinit")
     }
     
-    func bind() {
+    private func bind() {
         
         let input = WeatherSearchViewModel.Input(inputTextfieldTrigger: inputTextfieldTrigger)
         let output = viewModel.transform(input: input)
@@ -47,22 +47,5 @@ final class WeatherSearchViewController: BaseViewController {
             .drive(mainView.cityTableView.rx.items(cellIdentifier: CityTableViewCell.identifier, cellType: CityTableViewCell.self)) {(row, element, cell) in
                 cell.configureCell(element)
             }.disposed(by: disposeBag)
-    }
-}
-
-extension WeatherSearchViewController: UITableViewDelegate, UITableViewDataSource {
-    private func configureTableView() {
-        mainView.cityTableView.dataSource = self
-        mainView.cityTableView.delegate = self
-    }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CityTableViewCell.identifier, for: indexPath) as? CityTableViewCell else {
-            return UITableViewCell()
-        }
-//        cell.configureCell()
-        return cell
     }
 }
