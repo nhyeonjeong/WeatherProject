@@ -63,9 +63,14 @@ final class MainWeatherView: BaseView {
     }
     override func configureView() {
         self.backgroundColor = Constants.Color.normal
-        cityNameLabel.text = "Seoul"
-        currentTempLabel.text = "-7"
-        currentDescriptionLabel.text = "맑음"
-        tempMinMaxLabel.text = "최고: -1 | 최저: -11"
+    }
+}
+
+extension MainWeatherView {
+    func configureCurrentWeather(_ data: CityWeatherModel?) {
+        cityNameLabel.text = data?.city.name ?? "-"
+        currentTempLabel.text = "\(data?.list[0].main.temp ?? 0)°"
+        currentDescriptionLabel.text = data?.list[0].weather[0].description ?? "-"
+        tempMinMaxLabel.text = "최고: \(data?.list[0].main.temp_max ?? 0)°  |  최저: \(data?.list[0].main.temp_min ?? 0)°"
     }
 }
