@@ -18,8 +18,8 @@ final class MainWeatherViewController: BaseViewController {
     override func loadView() {
         view = mainView
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         // searchBar에 대한 tapgesture
         mainView.searchBar.addGestureRecognizer(searchBarTapGesture)
         bind()
