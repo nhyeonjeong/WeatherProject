@@ -13,12 +13,6 @@ struct CityWeatherModel: Decodable {
     let list: [List]
     let city: City
     
-    let averageHumanity: Double
-    let averageCloud: Double
-    let averageWindSpeed: Double
-    
-    let averageList: [MainBottomCollectionViewSectionData]
-    
     enum CodingKeys: CodingKey {
         case cnt
         case list
@@ -30,15 +24,17 @@ struct CityWeatherModel: Decodable {
         self.cnt = try container.decode(Int.self, forKey: .cnt)
         self.list = try container.decode([List].self, forKey: .list)
         self.city = try container.decode(City.self, forKey: .city)
-        
-        self.averageHumanity = Double(list.reduce(0) { $0 + ($1.main.humanity ?? 0)}) / Double(list.count)
-        self.averageCloud = Double(list.reduce(0) { $0 + $1.clouds.all}) / Double(list.count)
-        self.averageWindSpeed = list.reduce(0.0) { $0 + $1.wind.speed} / Double(list.count)
-        self.averageList = [MainBottomCollectionViewSectionData(title: .humanity, number: averageHumanity),
+    }
+
+    var averageList: [MainBottomCollectionViewSectionData] {
+        let averageHumanity = Double(list.reduce(0) { $0 + ($1.main.humanity ?? 0)}) / Double(list.count)
+        let averageCloud = Double(list.reduce(0) { $0 + $1.clouds.all}) / Double(list.count)
+        let averageWindSpeed = list.reduce(0.0) { $0 + $1.wind.speed} / Double(list.count)
+        return [MainBottomCollectionViewSectionData(title: .humanity, number: averageHumanity),
                             MainBottomCollectionViewSectionData(title: .cloud, number: averageCloud),
                             MainBottomCollectionViewSectionData(title: .windSpeed, number: averageWindSpeed)]
     }
-
+    
     var timeForcastItems: [TimeForcastItem] {
         let data: [TimeForcastItem] = list.map { list in
             var icon = list.weather[0].icon
