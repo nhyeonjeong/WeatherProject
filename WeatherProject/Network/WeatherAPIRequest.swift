@@ -10,7 +10,7 @@ import Foundation
 
 enum WeatherAPIRequest {
     
-    case currentWeather(lat: Double, lon: Double, cnt: Int?)
+    case currentWeather(lat: Double, lon: Double, cnt: Int? = 7)
     
 }
 

@@ -38,6 +38,15 @@ struct CityWeatherModel: Decodable {
                             MainBottomCollectionViewSectionData(title: .cloud, number: averageCloud),
                             MainBottomCollectionViewSectionData(title: .windSpeed, number: averageWindSpeed)]
     }
+
+    var timeForcastItems: [TimeForcastItem] {
+        let data: [TimeForcastItem] = list.map { list in
+            var icon = list.weather[0].icon
+
+            return TimeForcastItem(utcTime:list.dt_txt, descriptionImageString: icon.replacingOccurrences(of: "n", with: "d"), temp: "\(Int(list.main.temp))°")
+        }
+        return data
+    }
 }
 
 struct List: Decodable {
@@ -45,6 +54,7 @@ struct List: Decodable {
     let weather: [Weather]
     let clouds: Cloud
     let wind: Wind
+    let dt_txt: String
 }
 
 struct Main: Decodable {
@@ -56,6 +66,7 @@ struct Main: Decodable {
 
 struct Weather: Decodable {
     let description: String
+    let icon: String
 }
 struct Cloud: Decodable {
     let all: Int

@@ -24,6 +24,7 @@ final class MainWeatherViewController: BaseViewController {
     private let disposeBag = DisposeBag()
     private let searchBarTapGesture = UITapGestureRecognizer()
     private let inputFetchCityWeatherTrigger: PublishSubject<CityModel> = PublishSubject()
+    private let inputFetchTimeForcastTrigger: PublishSubject<CityModel> = PublishSubject()
     
     override func loadView() {
         view = mainView
@@ -31,22 +32,33 @@ final class MainWeatherViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
-        inputFetchCityWeatherTrigger.onNext(CityModel.seoulCity) // initial data
+        // initial data
+        inputFetchCityWeatherTrigger.onNext(CityModel.seoulCity)
+        inputFetchTimeForcastTrigger.onNext(CityModel.seoulCity)
     }
     private func bind() {
         searchBarTapGesture.rx.event
             .bind(with: self) { owner, text in
                 owner.present(WeatherSearchViewController(viewModel: WeatherSearchViewModel(), clickedCityData: { cityData in
                     owner.inputFetchCityWeatherTrigger.onNext(cityData)
+                    owner.inputFetchTimeForcastTrigger.onNext(cityData)
                 }), animated: true)
             }.disposed(by: disposeBag)
         
-        let input = MainWeatherViewModel.Input(inputFetchCityWeatherTrigger: inputFetchCityWeatherTrigger)
+        let input = MainWeatherViewModel.Input(inputFetchCityWeatherTrigger: inputFetchCityWeatherTrigger,
+                                               inputFetchTimeForcastTrigger: inputFetchTimeForcastTrigger)
         let output = viewModel.transform(input: input)
         // 상단 날씨 UI 업데이트
         output.outputCityWeather
             .drive(with: self) { owner, weather in
                 owner.mainView.configureCurrentWeather(weather)
+            }.disposed(by: disposeBag)
+        
+        // 3시간마다의 날씨
+        output.outputTimeForcastCollectionViewItems
+            .map { $0 ?? [] }
+            .drive(mainView.timeForcastCollectionView.rx.items(cellIdentifier: TimeForcastCollectionViewCell.identifier, cellType: TimeForcastCollectionViewCell.self)) {(row, element, cell) in
+                cell.configureCell(element)
             }.disposed(by: disposeBag)
         
         // 하단 습도, 구름, 바람속도 UI 업데이트
@@ -55,7 +67,6 @@ final class MainWeatherViewController: BaseViewController {
             .drive(mainView.bottomWeatherCollectionView.rx.items(cellIdentifier: BottomCollectionViewCell.identifier, cellType: BottomCollectionViewCell.self)) {(row, element, cell) in
                 cell.configureCell(element)
             }.disposed(by: disposeBag)
-
     }
     override func configureView() {
         // searchBar에 대한 tapgesture

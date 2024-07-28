@@ -9,6 +9,39 @@ import SnapKit
 import UIKit
 
 final class MainWeatherView: BaseView {
+    enum SectionBox: CaseIterable {
+        case timeForcast
+        case dayForcast
+        case map
+        
+        var boxTitle: String? {
+            switch self {
+            case .timeForcast: return "3시간 마다의 일기예보"
+            case .dayForcast: return "5일간의 일기예보"
+            case .map: return "강수량"
+            }
+        }
+        var boxTitleHeight: CGFloat? {
+            switch self {
+            case .timeForcast: return 40
+            case .dayForcast: return 30
+            case .map: return 30
+            }
+        }
+        var isUnderLined: Bool {
+            switch self {
+            case .timeForcast, .dayForcast: return true
+            case .map: return false
+            }
+        }
+        var contentHeight: CGFloat {
+            switch self {
+            case .timeForcast: return 100
+            case .dayForcast: return 100
+            case .map: return 100
+            }
+        }
+    }
 
     private let scrollView = UIScrollView()
     private let contentView = UIView()
@@ -22,27 +55,35 @@ final class MainWeatherView: BaseView {
     private let tempMinMaxLabel = UILabel().configureTextStyle(align: .center, fontSize: 16, fontWeight: .light)
     
     // 3시간 간격으로 2일간 기온 & 5일간 일기예보 & 강수량 Map
-    let timeForecastView: MainPointBoxView = {
-        let headerLabel = UILabel().configureTextStyle(fontSize: 20, fontWeight: .semibold)
-        let view = MainPointBoxView(headerTextLabel: headerLabel, headerHeight: 32)
+    lazy var timeForecastView: MainPointBoxView = {
+        let headerLabel = UILabel().configureTextStyle(fontSize: 14, fontWeight: .semibold)
+        let view = MainPointBoxView(headerTextLabel: headerLabel, boxType: .timeForcast, contentView: timeForcastCollectionView)
+        return view
+    }()
+    lazy var timeForcastCollectionView: UICollectionView = {
+        let view = UICollectionView(frame: .zero, collectionViewLayout: self.timeForcastCollectionViewLayout())
+        view.register(TimeForcastCollectionViewCell.self, forCellWithReuseIdentifier: TimeForcastCollectionViewCell.identifier)
+        view.backgroundColor = .clear
         return view
     }()
     
     // 5일간 일기예보
     let dayForecastView: MainPointBoxView = {
-        let headerLabel = UILabel().configureTextStyle(fontSize: 18)
-        let view = MainPointBoxView(headerTextLabel: headerLabel, headerHeight: 28)
+        let headerLabel = UILabel().configureTextStyle(fontSize: 14)
+        let view = MainPointBoxView(headerTextLabel: headerLabel, boxType: .dayForcast, contentView: UIView())
         return view
     }()
     
     // 강수량 Map
     let mapForecastView: MainPointBoxView = {
-        let view = MainPointBoxView(headerTextLabel: nil, headerHeight: nil)
+        let headerLabel = UILabel().configureTextStyle(fontSize: 14)
+        let view = MainPointBoxView(headerTextLabel: headerLabel, boxType: .map, contentView: UIView())
         return view
     }()
     
     // 습도, 구름, 바람속도 표시 collectionView
     lazy var bottomWeatherCollectionView = {
+        let headerLabel = UILabel().configureTextStyle(fontSize: 14)
         let view = UICollectionView(frame: .zero, collectionViewLayout: self.collectionViewLayout())
         view.backgroundColor = .clear
         view.register(BottomCollectionViewCell.self, forCellWithReuseIdentifier: BottomCollectionViewCell.identifier)
@@ -92,17 +133,16 @@ final class MainWeatherView: BaseView {
         timeForecastView.snp.makeConstraints { make in
             make.top.equalTo(mainWeatherView.snp.bottom).offset(20)
             make.horizontalEdges.equalToSuperview().inset(Constants.Constraint.safeAreaInset)
-            make.height.equalTo(200) // 임시
         }
         dayForecastView.snp.makeConstraints { make in
             make.top.equalTo(timeForecastView.snp.bottom).offset(10)
             make.horizontalEdges.equalToSuperview().inset(Constants.Constraint.safeAreaInset)
-            make.height.equalTo(200) // 임시
+//            make.height.equalTo(200) // 임시
         }
         mapForecastView.snp.makeConstraints { make in
             make.top.equalTo(dayForecastView.snp.bottom).offset(10)
             make.horizontalEdges.equalToSuperview().inset(Constants.Constraint.safeAreaInset)
-            make.height.equalTo(100) // 임시
+//            make.height.equalTo(100) // 임시
         }
         bottomWeatherCollectionView.snp.makeConstraints { make in
             make.top.equalTo(mapForecastView.snp.bottom).offset(10)
@@ -126,7 +166,16 @@ extension MainWeatherView {
 }
 
 extension MainWeatherView {
-    func collectionViewLayout() -> UICollectionViewLayout {
+    private func timeForcastCollectionViewLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 50, height: SectionBox.timeForcast.contentHeight) // 없으면 안됨
+        layout.minimumLineSpacing = 14
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        layout.scrollDirection = .horizontal
+        return layout
+    }
+    
+    private func collectionViewLayout() -> UICollectionViewLayout {
         // item
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -145,7 +194,6 @@ extension MainWeatherView {
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = Constants.Constraint.safeAreaInset
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: Constants.Constraint.safeAreaInset, bottom: 0, trailing: Constants.Constraint.safeAreaInset)
-//        section.orthogonalScrollingBehavior = .continuous
         return UICollectionViewCompositionalLayout(section: section)
     }
 }

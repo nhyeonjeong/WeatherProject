@@ -48,6 +48,9 @@
 		8BA006592C55FEB300251A95 /* MainPointBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA006582C55FEB300251A95 /* MainPointBoxView.swift */; };
 		8BA0065B2C56161C00251A95 /* BottomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0065A2C56161C00251A95 /* BottomCollectionViewCell.swift */; };
 		8BA0065D2C561E8D00251A95 /* MainBottomCollectionViewSectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0065C2C561E8D00251A95 /* MainBottomCollectionViewSectionData.swift */; };
+		8BA0065F2C562C7100251A95 /* TimeForcastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0065E2C562C7100251A95 /* TimeForcastCollectionViewCell.swift */; };
+		8BA006622C563F0C00251A95 /* DateFormatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA006612C563F0C00251A95 /* DateFormatManager.swift */; };
+		8BA006642C5648E800251A95 /* TimeForcastItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA006632C5648E800251A95 /* TimeForcastItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +91,9 @@
 		8BA006582C55FEB300251A95 /* MainPointBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPointBoxView.swift; sourceTree = "<group>"; };
 		8BA0065A2C56161C00251A95 /* BottomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomCollectionViewCell.swift; sourceTree = "<group>"; };
 		8BA0065C2C561E8D00251A95 /* MainBottomCollectionViewSectionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBottomCollectionViewSectionData.swift; sourceTree = "<group>"; };
+		8BA0065E2C562C7100251A95 /* TimeForcastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeForcastCollectionViewCell.swift; sourceTree = "<group>"; };
+		8BA006612C563F0C00251A95 /* DateFormatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatManager.swift; sourceTree = "<group>"; };
+		8BA006632C5648E800251A95 /* TimeForcastItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeForcastItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +137,7 @@
 				8B6AD5012C540E1700E7BB8E /* Constants */,
 				8B6AD50D2C541E0500E7BB8E /* Protocol */,
 				8B6AD4F92C53FEBE00E7BB8E /* Extension */,
+				8BA006602C563EFC00251A95 /* Manager */,
 				8B6AD5262C5554A900E7BB8E /* Model */,
 				8B6AD5212C553A2200E7BB8E /* Network */,
 				8B6AD4D02C53F4D700E7BB8E /* Base */,
@@ -236,6 +243,7 @@
 				8B6AD5172C54C7C400E7BB8E /* MainWeatherView.swift */,
 				8B6AD51B2C54D6AF00E7BB8E /* MainWeatherViewController.swift */,
 				8B6AD51D2C55357100E7BB8E /* MainWeatherViewModel.swift */,
+				8BA0065E2C562C7100251A95 /* TimeForcastCollectionViewCell.swift */,
 				8BA0065A2C56161C00251A95 /* BottomCollectionViewCell.swift */,
 			);
 			path = MainWeather;
@@ -258,8 +266,17 @@
 				8B6AD5272C5554B800E7BB8E /* WeatherModel.swift */,
 				8B6AD52E2C5565AA00E7BB8E /* CityModel.swift */,
 				8BA0065C2C561E8D00251A95 /* MainBottomCollectionViewSectionData.swift */,
+				8BA006632C5648E800251A95 /* TimeForcastItem.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		8BA006602C563EFC00251A95 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				8BA006612C563F0C00251A95 /* DateFormatManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -367,8 +384,10 @@
 				8B6AD51E2C55357100E7BB8E /* MainWeatherViewModel.swift in Sources */,
 				8B6AD4FB2C53FEC700E7BB8E /* UIView+Extension.swift in Sources */,
 				8BA006592C55FEB300251A95 /* MainPointBoxView.swift in Sources */,
+				8BA006642C5648E800251A95 /* TimeForcastItem.swift in Sources */,
 				8B6AD4B52C53DFD000E7BB8E /* AppDelegate.swift in Sources */,
 				8B6AD50A2C54140F00E7BB8E /* CityTableViewCell.swift in Sources */,
+				8BA006622C563F0C00251A95 /* DateFormatManager.swift in Sources */,
 				8B6AD4D42C53F57B00E7BB8E /* BaseView.swift in Sources */,
 				8BA0065B2C56161C00251A95 /* BottomCollectionViewCell.swift in Sources */,
 				8BA006572C5570EF00251A95 /* BaseCollectionViewCell.swift in Sources */,
@@ -378,6 +397,7 @@
 				8BA0065D2C561E8D00251A95 /* MainBottomCollectionViewSectionData.swift in Sources */,
 				8B6AD4B72C53DFD000E7BB8E /* SceneDelegate.swift in Sources */,
 				8B6AD4F82C53FEAB00E7BB8E /* WeatherSearchView.swift in Sources */,
+				8BA0065F2C562C7100251A95 /* TimeForcastCollectionViewCell.swift in Sources */,
 				8B6AD50F2C541E1800E7BB8E /* InputOutput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
