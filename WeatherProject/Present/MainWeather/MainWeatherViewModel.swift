@@ -34,7 +34,9 @@ final class MainWeatherViewModel: InputOutput {
         
         // 도시 API통신(cnt = 7)
         input.inputFetchCityWeatherTrigger
+            .debounce(.seconds(2), scheduler: MainScheduler.instance)
             .flatMap { cityData in
+                print("🍕network")
                 return NetworkManager.shared.fetchAPI(type: CityWeatherModel.self, router: WeatherAPIRequest.currentWeather(lat: cityData.coord.lat, lon: cityData.coord.lon))
                     .catch { error in
                         return Observable.empty()
@@ -50,7 +52,9 @@ final class MainWeatherViewModel: InputOutput {
             }.disposed(by: disposeBag)
         
         input.inputFetchTimeForcastTrigger
+            .debounce(.seconds(2), scheduler: MainScheduler.instance)
             .flatMap { cityData in
+                print("🍕network")
                 return NetworkManager.shared.fetchAPI(type: CityWeatherModel.self, router: WeatherAPIRequest.currentWeather(lat: cityData.coord.lat, lon: cityData.coord.lon, cnt: 40))
                     .catch { error in
                         return Observable.empty()
