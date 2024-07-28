@@ -14,10 +14,14 @@ final class DateFormatManager {
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         formatter.timeZone = TimeZone(abbreviation: "UTC")
         let date = formatter.date(from: utcString)
+//        print("🥹", date)
         guard let date else { return nil }
         
         formatter.dateFormat = "a h시"
-        return formatter.string(from: date)
+        formatter.timeZone = TimeZone(abbreviation: "Asia/Seoul")
+        let haha = formatter.string(from: date)
+//        print("🍕", haha)
+        return haha
     }
     /// utcString에서 요일(한글) 반환
     static func getWeekData(utcString: String) -> String? {
@@ -29,6 +33,7 @@ final class DateFormatManager {
         guard let date else { return nil }
         
         formatter.dateFormat = "E"
+        formatter.timeZone = TimeZone(abbreviation: "Asia/Seoul")
         return formatter.string(from: date)
     }
 }
