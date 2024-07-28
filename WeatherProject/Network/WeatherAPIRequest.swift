@@ -22,7 +22,8 @@ extension WeatherAPIRequest: RouterType {
     var commonQuery: [URLQueryItem] {
         [URLQueryItem(name: QueryKey.units.rawValue, value: "metric"),
          URLQueryItem(name: QueryKey.lang.rawValue, value: "kr"),
-         URLQueryItem(name: QueryKey.appid.rawValue, value: "\(APIKey.apiKey.rawValue)")]
+         URLQueryItem(name: QueryKey.appid.rawValue, value: "\(APIKey.apiKey.rawValue)"),
+         URLQueryItem(name: QueryKey.cnt.rawValue, value: "7")]
     }
     var method: Alamofire.HTTPMethod {
         switch self {

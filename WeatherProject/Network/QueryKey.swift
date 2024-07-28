@@ -13,4 +13,5 @@ enum QueryKey: String {
     case appid
     case lat
     case lon
+    case cnt
 }
