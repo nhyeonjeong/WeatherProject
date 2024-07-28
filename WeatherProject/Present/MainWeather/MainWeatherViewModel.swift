@@ -21,6 +21,7 @@ final class MainWeatherViewModel: InputOutput {
         let outputTimeForcastCollectionViewItems: Driver<[TimeForcastItem]?>
         let outputDayForcastTableViewItems: Driver<[DayForcastItem]?>
         let outputMapLocation: Driver<City?>
+        let outputErrorMessage: Driver<String>
     }
     
     let disposeBag = DisposeBag()
@@ -31,6 +32,7 @@ final class MainWeatherViewModel: InputOutput {
         let outputTimeForcastCollectionViewItems: PublishRelay<[TimeForcastItem]?> = PublishRelay()
         let outputDayForcastTableViewItems: PublishRelay<[DayForcastItem]?> = PublishRelay()
         let outputMapLocation: PublishRelay<City?> = PublishRelay()
+        let outputErrorMessage: PublishRelay<String> = PublishRelay()
         
         // 도시 API통신(cnt = 7)
         input.inputFetchCityWeatherTrigger
@@ -39,7 +41,16 @@ final class MainWeatherViewModel: InputOutput {
                 print("🍕network")
                 return NetworkManager.shared.fetchAPI(type: CityWeatherModel.self, router: WeatherAPIRequest.currentWeather(lat: cityData.coord.lat, lon: cityData.coord.lon))
                     .catch { error in
-                        return Observable.empty()
+                        guard let error = error as? WeatherAPIError else {
+                            return Observable.empty()
+                        }
+                        outputCityWeather.accept(nil)
+                        outputBottomCollectionViewItems.accept(nil)
+                        outputMapLocation.accept(nil)
+                        if error == .overLimit {
+                            outputErrorMessage.accept("통신 횟수를 초과했습니다")
+                        }
+                        return Observable.never()
                     }
             }
             .bind(with: self) { owner, weather in
@@ -57,7 +68,15 @@ final class MainWeatherViewModel: InputOutput {
                 print("🍕network")
                 return NetworkManager.shared.fetchAPI(type: CityWeatherModel.self, router: WeatherAPIRequest.currentWeather(lat: cityData.coord.lat, lon: cityData.coord.lon, cnt: 40))
                     .catch { error in
-                        return Observable.empty()
+                        guard let error = error as? WeatherAPIError else {
+                            return Observable.empty()
+                        }
+                        outputTimeForcastCollectionViewItems.accept(nil)
+                        outputDayForcastTableViewItems.accept(nil)
+                        if error == .overLimit {
+                            outputErrorMessage.accept("통신 횟수를 초과했습니다")
+                        }
+                        return Observable.never()
                     }
             }
             .bind(with: self) { owner, weather in
@@ -73,7 +92,8 @@ final class MainWeatherViewModel: InputOutput {
                       outputBottomCollectionViewItems: outputBottomCollectionViewItems.asDriver(onErrorJustReturn: nil),
                       outputTimeForcastCollectionViewItems: outputTimeForcastCollectionViewItems.asDriver(onErrorJustReturn: nil),
                       outputDayForcastTableViewItems: outputDayForcastTableViewItems.asDriver(onErrorJustReturn: nil),
-                      outputMapLocation: outputMapLocation.asDriver(onErrorJustReturn: nil))
+                      outputMapLocation: outputMapLocation.asDriver(onErrorJustReturn: nil),
+                      outputErrorMessage: outputErrorMessage.asDriver(onErrorJustReturn: ""))
     }
 }
 

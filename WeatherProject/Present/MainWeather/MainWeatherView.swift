@@ -188,7 +188,7 @@ final class MainWeatherView: BaseView {
 extension MainWeatherView {
     func configureCurrentWeather(_ data: NewCityWeatherModel?) {
         // 배경
-        let currentWeather = data?.weatherList[0]
+        let currentWeather = data?.weatherList.first
         if let currentWeather {
             let weather = currentWeather.main.lowercased()
             backgroundImageView.image = weather == "clear" ? UIImage(named: "sunny") : UIImage(named: "\(currentWeather.main.lowercased())")
