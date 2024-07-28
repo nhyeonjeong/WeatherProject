@@ -14,7 +14,6 @@ class BaseViewController: UIViewController {
     var reconnectTask: (() -> Void)? = nil
     private let networkMonitor = NWPathMonitor()
     private let specificNetworkMonitor = NWPathMonitor(requiredInterfaceType: .wifi)
-    private var networkStatusView: NetworkStatusView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
