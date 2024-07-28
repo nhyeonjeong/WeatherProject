@@ -16,6 +16,7 @@ final class WeatherSearchView: BaseView {
         let view = UITableView()
         view.backgroundColor = .clear
         view.register(CityTableViewCell.self, forCellReuseIdentifier: CityTableViewCell.identifier)
+        view.keyboardDismissMode = .onDrag
         return view
     }()
     
