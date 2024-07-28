@@ -36,7 +36,9 @@ final class MainWeatherViewController: BaseViewController {
     private func bind() {
         searchBarTapGesture.rx.event
             .bind(with: self) { owner, text in
-                owner.present(WeatherSearchViewController(viewModel: WeatherSearchViewModel()), animated: true)
+                owner.present(WeatherSearchViewController(viewModel: WeatherSearchViewModel(), clickedCityData: { cityData in
+                    owner.inputFetchCityWeatherTrigger.onNext(cityData)
+                }), animated: true)
             }.disposed(by: disposeBag)
         
         let input = MainWeatherViewModel.Input(inputFetchCityWeatherTrigger: inputFetchCityWeatherTrigger)

@@ -12,14 +12,17 @@ import UIKit
 
 final class WeatherSearchViewController: BaseViewController {
     
+    let clickedCityData: ((CityModel) -> Void)?
+    
     private let viewModel: WeatherSearchViewModel
     
     private let mainView = WeatherSearchView()
     private let inputTextfieldTrigger: PublishRelay<Void> = PublishRelay()
     private let disposeBag: DisposeBag = DisposeBag()
     
-    init(viewModel: WeatherSearchViewModel) {
+    init(viewModel: WeatherSearchViewModel, clickedCityData: @escaping (CityModel) -> Void) {
         self.viewModel = viewModel
+        self.clickedCityData = clickedCityData
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder: NSCoder) {
@@ -58,6 +61,13 @@ final class WeatherSearchViewController: BaseViewController {
         output.outputIsResultEmpty
             .drive(with: self) { owner, value in
                 owner.mainView.showNoResultMessage(value)
+            }.disposed(by: disposeBag)
+        
+        // cell 선택
+        mainView.cityTableView.rx.modelSelected(CityModel.self)
+            .bind(with: self) { owner, cityData in
+                owner.clickedCityData?(cityData)
+                owner.dismiss(animated: true)
             }.disposed(by: disposeBag)
     }
 }
