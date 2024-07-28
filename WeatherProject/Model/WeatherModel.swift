@@ -27,12 +27,12 @@ struct CityWeatherModel: Decodable {
     }
 
     var averageList: [MainBottomCollectionViewSectionData] {
-        let averageHumanity = Double(list.reduce(0) { $0 + ($1.main.humanity ?? 0)}) / Double(list.count)
+        let averageHumanity = Double(list.reduce(0) { $0 + ($1.main.humidity ?? 0)}) / Double(list.count)
         let averageCloud = Double(list.reduce(0) { $0 + $1.clouds.all}) / Double(list.count)
         let averageWindSpeed = list.reduce(0.0) { $0 + $1.wind.speed} / Double(list.count)
-        return [MainBottomCollectionViewSectionData(title: .humanity, number: averageHumanity),
-                            MainBottomCollectionViewSectionData(title: .cloud, number: averageCloud),
-                            MainBottomCollectionViewSectionData(title: .windSpeed, number: averageWindSpeed)]
+        return [MainBottomCollectionViewSectionData(type: .humanity, number: averageHumanity),
+                MainBottomCollectionViewSectionData(type: .cloud, number: averageCloud),
+                MainBottomCollectionViewSectionData(type: .windSpeed, number: averageWindSpeed)]
     }
     
     var timeForcastItems: [TimeForcastItem] {

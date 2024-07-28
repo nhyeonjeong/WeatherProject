@@ -30,9 +30,9 @@ final class BottomCollectionViewCell: BaseCollectionViewCell {
         }
     }
     
-    private let titleLabel = UILabel().configureTextStyle(fontSize: 20)
+    private let titleLabel = UILabel().configureTextStyle(fontSize: 18)
     private let contentLabel = {
-        let view = UILabel().configureTextStyle(fontSize: 40, fontWeight: .semibold)
+        let view = UILabel().configureTextStyle(fontSize: 30, fontWeight: .semibold)
         view.numberOfLines = 2
         return view
     }()
@@ -58,7 +58,7 @@ final class BottomCollectionViewCell: BaseCollectionViewCell {
 
 extension BottomCollectionViewCell {
     func configureCell(_ data: MainBottomCollectionViewSectionData) {
-        titleLabel.text = data.title.sectionTitle
+        titleLabel.text = data.title
         contentLabel.text = data.content
     }
 }

@@ -248,8 +248,8 @@
 				8B6AD51B2C54D6AF00E7BB8E /* MainWeatherViewController.swift */,
 				8B6AD51D2C55357100E7BB8E /* MainWeatherViewModel.swift */,
 				8BA0065E2C562C7100251A95 /* TimeForcastCollectionViewCell.swift */,
-				8BA0065A2C56161C00251A95 /* BottomCollectionViewCell.swift */,
 				8B94A0542C566AFC00B7D9FB /* DayAverageForcastTableViewCell.swift */,
+				8BA0065A2C56161C00251A95 /* BottomCollectionViewCell.swift */,
 			);
 			path = MainWeather;
 			sourceTree = "<group>";
