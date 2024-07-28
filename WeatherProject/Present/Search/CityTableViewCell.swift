@@ -22,14 +22,9 @@ final class CityTableViewCell: BaseTableViewCell {
         view.textColor = Constants.Color.text
         return view
     }()
-    private let bottomLine: UIView = {
-        let view = UIView()
-        view.backgroundColor = Constants.Color.normal
-        return view
-    }()
     
     override func configureHierarchy() {
-        addSubViews([nameLabel, countryLabel, bottomLine])
+        addSubViews([nameLabel, countryLabel])
     }
     override func configureConstraints() {
         // content
@@ -42,12 +37,7 @@ final class CityTableViewCell: BaseTableViewCell {
             make.leading.equalTo(nameLabel.snp.leading)
             make.top.equalTo(nameLabel.snp.bottom).offset(4)
             make.height.equalTo(20)
-        }
-        bottomLine.snp.makeConstraints { make in
-            make.top.equalTo(countryLabel.snp.bottom).offset(12)
-            make.height.equalTo(1)
-            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(18)
-            make.bottom.equalToSuperview()
+            make.bottom.equalToSuperview().inset(12)
         }
     }
     override func configureView() {

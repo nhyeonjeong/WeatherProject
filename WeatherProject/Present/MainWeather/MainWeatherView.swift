@@ -42,10 +42,15 @@ final class MainWeatherView: BaseView {
         }
     }
 
+    private let backgroundImageView = {
+        let view = UIImageView(frame: .zero)
+        view.contentMode = .scaleAspectFill
+        return view
+    }()
     private let scrollView = UIScrollView()
     private let contentView = UIView()
     // searchBar
-    let searchBar = CustomSearchBar(backColor: Constants.Color.light)
+    let searchBar = CustomSearchBar(backColor: .white.withAlphaComponent(0.8))
     // 최상단 최근 날씨
     private let mainWeatherView = UIView()
     private let cityNameLabel = UILabel().configureTextStyle(align: .center, fontSize: 28)
@@ -114,9 +119,12 @@ final class MainWeatherView: BaseView {
         mapForecastView.addSubViews([mapViewMessageLabel])
         contentView.addSubViews([mainWeatherView, timeForecastView, dayForecastView, mapForecastView, bottomWeatherCollectionView])
         scrollView.addSubview(contentView)
-        addSubViews([searchBar, scrollView])
+        addSubViews([backgroundImageView, searchBar, scrollView])
     }
     override func configureConstratinst() {
+        backgroundImageView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         searchBar.snp.makeConstraints { make in
             make.top.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(Constants.Constraint.safeAreaInset)
         }
@@ -173,12 +181,17 @@ final class MainWeatherView: BaseView {
         }
     }
     override func configureView() {
-        self.backgroundColor = Constants.Color.normal
+        self.backgroundColor = Constants.Color.light
     }
 }
 
 extension MainWeatherView {
     func configureCurrentWeather(_ data: CityWeatherModel?) {
+        // 배경
+        if let data {
+            let weather = data.list[0].weather[0].main.lowercased()
+            backgroundImageView.image = weather == "clear" ? UIImage(named: "sunny") : UIImage(named: "\(data.list[0].weather[0].main.lowercased())")
+        }
         cityNameLabel.text = data?.city.name ?? "-"
         currentTempLabel.text = "\(data?.list[0].main.temp ?? 0)°"
         currentDescriptionLabel.text = data?.list[0].weather[0].description ?? "-"

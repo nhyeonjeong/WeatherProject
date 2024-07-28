@@ -10,13 +10,15 @@ import UIKit
 
 final class WeatherSearchView: BaseView {
 
-    let searchBar = CustomSearchBar(backColor: Constants.Color.normal)
+    let searchBar = CustomSearchBar(backColor: .white.withAlphaComponent(0.8))
     
     let cityTableView: UITableView = {
         let view = UITableView()
         view.backgroundColor = .clear
         view.register(CityTableViewCell.self, forCellReuseIdentifier: CityTableViewCell.identifier)
         view.keyboardDismissMode = .onDrag
+        view.separatorColor = .white.withAlphaComponent(0.5)
+        view.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         return view
     }()
     
@@ -46,7 +48,8 @@ final class WeatherSearchView: BaseView {
         }
     }
     override func configureView() {
-        backgroundColor = Constants.Color.point
+        backgroundColor = .black.withAlphaComponent(0.8)
+        
     }
 }
 
