@@ -5,6 +5,7 @@
 //  Created by 남현정 on 2024/07/27.
 //
 
+import MapKit
 import SnapKit
 import UIKit
 
@@ -38,7 +39,7 @@ final class MainWeatherView: BaseView {
             switch self {
             case .timeForcast: return 100
             case .dayForcast: return 250
-            case .map: return 100
+            case .map: return 240
             }
         }
     }
@@ -86,9 +87,13 @@ final class MainWeatherView: BaseView {
     }()
     
     // 강수량 Map
-    let mapForecastView: MainPointBoxView = {
+    lazy var mapForecastView: MainPointBoxView = {
         let headerLabel = UILabel().configureTextStyle(fontSize: 14)
-        let view = MainPointBoxView(headerTextLabel: headerLabel, boxType: .map, contentView: UIView())
+        let view = MainPointBoxView(headerTextLabel: headerLabel, boxType: .map, contentView: mapView)
+        return view
+    }()
+    let mapView: MKMapView = {
+        let view = MKMapView()
         return view
     }()
     
@@ -148,12 +153,10 @@ final class MainWeatherView: BaseView {
         dayForecastView.snp.makeConstraints { make in
             make.top.equalTo(timeForecastView.snp.bottom).offset(10)
             make.horizontalEdges.equalToSuperview().inset(Constants.Constraint.safeAreaInset)
-//            make.height.equalTo(200) // 임시
         }
         mapForecastView.snp.makeConstraints { make in
             make.top.equalTo(dayForecastView.snp.bottom).offset(10)
             make.horizontalEdges.equalToSuperview().inset(Constants.Constraint.safeAreaInset)
-//            make.height.equalTo(100) // 임시
         }
         bottomWeatherCollectionView.snp.makeConstraints { make in
             make.top.equalTo(mapForecastView.snp.bottom).offset(10)
@@ -173,6 +176,19 @@ extension MainWeatherView {
         currentTempLabel.text = "\(data?.list[0].main.temp ?? 0)°"
         currentDescriptionLabel.text = data?.list[0].weather[0].description ?? "-"
         tempMinMaxLabel.text = "최고: \(data?.list[0].main.temp_max ?? 0)°  |  최저: \(data?.list[0].main.temp_min ?? 0)°"
+    }
+    
+    func addAnnotationWithMoveCamera(_ city: City) {
+        let lat = city.coord.lat
+        let lon = city.coord.lon
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+        mapView.addAnnotation(annotation)
+        
+        let location = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+        let span = MKCoordinateSpan(latitudeDelta: 2, longitudeDelta: 2) // 줌 레벨 설정
+        let region = MKCoordinateRegion(center: location, span: span)
+        mapView.setRegion(region, animated: true)
     }
 }
 

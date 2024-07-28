@@ -68,6 +68,16 @@ final class MainWeatherViewController: BaseViewController {
                 cell.configureCell(element)
             }.disposed(by: disposeBag)
         
+        // map
+        output.outputMapLocation
+            .drive(with: self) { owner, city in
+                guard let city else {
+                    // nil
+                    return
+                }
+                owner.mainView.addAnnotationWithMoveCamera(city)
+            }.disposed(by: disposeBag)
+        
         // 하단 습도, 구름, 바람속도 UI 업데이트
         output.outputBottomCollectionViewItems
             .map { $0 ?? [] }

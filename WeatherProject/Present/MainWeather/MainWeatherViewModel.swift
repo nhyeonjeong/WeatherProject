@@ -10,7 +10,7 @@ import RxCocoa
 import RxSwift
 
 final class MainWeatherViewModel: InputOutput {
-    
+
     struct Input {
         let inputFetchCityWeatherTrigger: PublishSubject<CityModel>
         let inputFetchTimeForcastTrigger: PublishSubject<CityModel>
@@ -20,6 +20,7 @@ final class MainWeatherViewModel: InputOutput {
         let outputBottomCollectionViewItems: Driver<[MainBottomCollectionViewSectionData]?>
         let outputTimeForcastCollectionViewItems: Driver<[TimeForcastItem]?>
         let outputDayForcastTableViewItems: Driver<[DayForcastItem]?>
+        let outputMapLocation: Driver<City?>
     }
     
     let disposeBag = DisposeBag()
@@ -29,6 +30,7 @@ final class MainWeatherViewModel: InputOutput {
         let outputBottomCollectionViewItems: PublishRelay<[MainBottomCollectionViewSectionData]?> = PublishRelay()
         let outputTimeForcastCollectionViewItems: PublishRelay<[TimeForcastItem]?> = PublishRelay()
         let outputDayForcastTableViewItems: PublishRelay<[DayForcastItem]?> = PublishRelay()
+        let outputMapLocation: PublishRelay<City?> = PublishRelay()
         
         // 도시 API통신(cnt = 7)
         input.inputFetchCityWeatherTrigger
@@ -43,7 +45,8 @@ final class MainWeatherViewModel: InputOutput {
                 outputCityWeather.accept(weather)
                 // 습도, 구름, 바람 UI 업데이트
                 outputBottomCollectionViewItems.accept(weather.averageList)
-                
+                // 지도 annotation표시
+                outputMapLocation.accept(weather.city)
             }.disposed(by: disposeBag)
         
         input.inputFetchTimeForcastTrigger
@@ -65,7 +68,8 @@ final class MainWeatherViewModel: InputOutput {
         return Output(outputCityWeather: outputCityWeather.asDriver(onErrorJustReturn: nil),
                       outputBottomCollectionViewItems: outputBottomCollectionViewItems.asDriver(onErrorJustReturn: nil),
                       outputTimeForcastCollectionViewItems: outputTimeForcastCollectionViewItems.asDriver(onErrorJustReturn: nil),
-                      outputDayForcastTableViewItems: outputDayForcastTableViewItems.asDriver(onErrorJustReturn: nil))
+                      outputDayForcastTableViewItems: outputDayForcastTableViewItems.asDriver(onErrorJustReturn: nil),
+                      outputMapLocation: outputMapLocation.asDriver(onErrorJustReturn: nil))
     }
 }
 
