@@ -10,7 +10,7 @@ import Foundation
 
 enum WeatherAPIRequest {
     
-    case currentWeather(lat: Double, lon: Double)
+    case currentWeather(lat: Double, lon: Double, cnt: Int?)
     
 }
 
@@ -22,8 +22,7 @@ extension WeatherAPIRequest: RouterType {
     var commonQuery: [URLQueryItem] {
         [URLQueryItem(name: QueryKey.units.rawValue, value: "metric"),
          URLQueryItem(name: QueryKey.lang.rawValue, value: "kr"),
-         URLQueryItem(name: QueryKey.appid.rawValue, value: "\(APIKey.apiKey.rawValue)"),
-         URLQueryItem(name: QueryKey.cnt.rawValue, value: "7")]
+         URLQueryItem(name: QueryKey.appid.rawValue, value: "\(APIKey.apiKey.rawValue)")]
     }
     var method: Alamofire.HTTPMethod {
         switch self {
@@ -33,9 +32,10 @@ extension WeatherAPIRequest: RouterType {
     }
     var queryItems: [URLQueryItem]? {
         switch self {
-        case .currentWeather(let lat, let lon):
+        case .currentWeather(let lat, let lon, let cnt):
             return commonQuery + [URLQueryItem(name: QueryKey.lat.rawValue, value: "\(lat)"),
-                                  URLQueryItem(name: QueryKey.lon.rawValue, value: "\(lon)")]
+                                  URLQueryItem(name: QueryKey.lon.rawValue, value: "\(lon)"),
+                                  URLQueryItem(name: QueryKey.cnt.rawValue, value: "\(cnt ?? 7)")]
         }
     }
 }
