@@ -83,6 +83,7 @@ final class MainWeatherView: BaseView {
         view.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         view.backgroundColor = .clear
         view.allowsSelection = false
+        view.isScrollEnabled = false
         return view
     }()
     
@@ -105,6 +106,7 @@ final class MainWeatherView: BaseView {
         let view = UICollectionView(frame: .zero, collectionViewLayout: self.collectionViewLayout())
         view.backgroundColor = .clear
         view.register(BottomCollectionViewCell.self, forCellWithReuseIdentifier: BottomCollectionViewCell.identifier)
+        view.isScrollEnabled = false
         return view
     }()
     
@@ -167,7 +169,7 @@ final class MainWeatherView: BaseView {
         bottomWeatherCollectionView.snp.makeConstraints { make in
             make.top.equalTo(mapForecastView.snp.bottom).offset(10)
             make.horizontalEdges.equalToSuperview()
-            make.height.equalTo(400) // 임시
+            make.height.equalTo(330) // 임시
             make.bottom.equalToSuperview().inset(Constants.Constraint.safeAreaInset)
         }
     }
