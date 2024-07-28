@@ -12,6 +12,13 @@ import UIKit
 final class MainWeatherViewController: BaseViewController {
     
     private let viewModel: MainWeatherViewModel
+    
+    private let mainView = MainWeatherView()
+    private let disposeBag = DisposeBag()
+    private let searchBarTapGesture = UITapGestureRecognizer()
+    private let inputFetchCityWeatherTrigger: PublishSubject<CityModel> = PublishSubject()
+    private let inputFetchTimeForcastTrigger: PublishSubject<CityModel> = PublishSubject()
+    
     init(viewModel: MainWeatherViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -19,12 +26,6 @@ final class MainWeatherViewController: BaseViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    private let mainView = MainWeatherView()
-    private let disposeBag = DisposeBag()
-    private let searchBarTapGesture = UITapGestureRecognizer()
-    private let inputFetchCityWeatherTrigger: PublishSubject<CityModel> = PublishSubject()
-    private let inputFetchTimeForcastTrigger: PublishSubject<CityModel> = PublishSubject()
     
     override func loadView() {
         view = mainView

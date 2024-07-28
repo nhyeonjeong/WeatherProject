@@ -9,9 +9,7 @@ import Alamofire
 import Foundation
 
 enum WeatherAPIRequest {
-    
     case currentWeather(lat: Double, lon: Double, cnt: Int? = 7)
-    
 }
 
 extension WeatherAPIRequest: RouterType {
