@@ -60,7 +60,7 @@ struct Main: Decodable {
     let temp: Double
     let temp_min: Double
     let temp_max: Double
-    let humanity: Int?
+    let humidity: Int?
 }
 
 struct Weather: Decodable {
