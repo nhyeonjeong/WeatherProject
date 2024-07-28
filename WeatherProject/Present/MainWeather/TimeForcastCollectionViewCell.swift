@@ -45,8 +45,8 @@ final class TimeForcastCollectionViewCell: BaseCollectionViewCell {
 }
 
 extension TimeForcastCollectionViewCell {
-    func configureCell(_ weather: TimeForcastItem) {
-        timeLabel.text = weather.timeString
+    func configureCell(_ weather: TimeForcastItem, row: Int) {
+        timeLabel.text = row == 0 ? "지금" : weather.timeString
         weatherImageView.image = UIImage(named: weather.descriptionImageString)
         tempLabel.text = "\(weather.temp)"
     }

@@ -139,6 +139,7 @@ final class MainWeatherView: BaseView {
         mainWeatherView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(16)
             make.horizontalEdges.equalToSuperview().inset(Constants.Constraint.safeAreaInset)
+            make.height.equalTo(200)
         }
         cityNameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
@@ -155,7 +156,6 @@ final class MainWeatherView: BaseView {
         tempMinMaxLabel.snp.makeConstraints { make in
             make.top.equalTo(currentDescriptionLabel.snp.bottom).offset(8)
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview()
         }
         
         timeForecastView.snp.makeConstraints { make in
@@ -181,7 +181,7 @@ final class MainWeatherView: BaseView {
         }
     }
     override func configureView() {
-        self.backgroundColor = Constants.Color.light
+//        self.backgroundColor = Constants.Color.light
     }
 }
 
@@ -223,8 +223,8 @@ extension MainWeatherView {
     private func timeForcastCollectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 50, height: SectionBox.timeForcast.contentHeight) // 없으면 안됨
-        layout.minimumLineSpacing = 14
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        layout.minimumLineSpacing = 4
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 10)
         layout.scrollDirection = .horizontal
         return layout
     }

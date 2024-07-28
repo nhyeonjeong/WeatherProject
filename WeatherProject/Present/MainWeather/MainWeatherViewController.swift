@@ -65,7 +65,7 @@ final class MainWeatherViewController: BaseViewController {
         output.outputTimeForcastCollectionViewItems
             .map { $0 ?? [] }
             .drive(mainView.timeForcastCollectionView.rx.items(cellIdentifier: TimeForcastCollectionViewCell.identifier, cellType: TimeForcastCollectionViewCell.self)) {(row, element, cell) in
-                cell.configureCell(element)
+                cell.configureCell(element, row: row)
             }.disposed(by: disposeBag)
         
         // 5일 일기예보
