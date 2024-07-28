@@ -41,11 +41,13 @@ class MainPointBoxView: BaseView {
         }
         headerUnderLine.snp.makeConstraints { make in
             make.top.equalTo(headerTextLabel.snp.bottom)
+            make.height.equalTo(1)
             make.horizontalEdges.equalToSuperview().inset(Constants.Constraint.safeAreaInset)
         }
     }
     override func configureView() {
         self.layer.cornerRadius = 10
         self.backgroundColor = Constants.Color.point
+        self.headerUnderLine.backgroundColor = Constants.Color.normal
     }
 }
