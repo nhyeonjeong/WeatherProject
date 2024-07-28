@@ -17,6 +17,6 @@ enum Constants {
     }
     
     enum Constraint {
-        static let safeAreaInset = 10
+        static let safeAreaInset: CGFloat = 10
     }
 }

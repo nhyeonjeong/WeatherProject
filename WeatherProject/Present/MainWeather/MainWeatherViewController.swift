@@ -10,7 +10,7 @@ import RxSwift
 import UIKit
 
 final class MainWeatherViewController: BaseViewController {
-
+    
     private let viewModel: MainWeatherViewModel
     init(viewModel: MainWeatherViewModel) {
         self.viewModel = viewModel
@@ -31,7 +31,7 @@ final class MainWeatherViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
-        inputFetchCityWeatherTrigger.onNext(CityModel.seoulCity)
+        inputFetchCityWeatherTrigger.onNext(CityModel.seoulCity) // initial data
     }
     private func bind() {
         searchBarTapGesture.rx.event
@@ -41,10 +41,19 @@ final class MainWeatherViewController: BaseViewController {
         
         let input = MainWeatherViewModel.Input(inputFetchCityWeatherTrigger: inputFetchCityWeatherTrigger)
         let output = viewModel.transform(input: input)
+        // 상단 날씨 UI 업데이트
         output.outputCityWeather
             .drive(with: self) { owner, weather in
                 owner.mainView.configureCurrentWeather(weather)
             }.disposed(by: disposeBag)
+        
+        // 하단 습도, 구름, 바람속도 UI 업데이트
+        output.outputBottomCollectionViewItems
+            .map { $0 ?? [] }
+            .drive(mainView.bottomWeatherCollectionView.rx.items(cellIdentifier: BottomCollectionViewCell.identifier, cellType: BottomCollectionViewCell.self)) {(row, element, cell) in
+                cell.configureCell(element)
+            }.disposed(by: disposeBag)
+
     }
     override func configureView() {
         // searchBar에 대한 tapgesture

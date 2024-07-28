@@ -43,7 +43,7 @@ final class NetworkManager {
 //                        print("🍕\(success)")
                         return
                         
-                    case .failure(_):
+                    case .failure(let failure):
 //                        print("🐈‍⬛ failure: \(failure)")
                         let statusCode = response.response?.statusCode
                         observer.onError(WeatherAPIError.statusCodeChangeToError(statusCode: statusCode))

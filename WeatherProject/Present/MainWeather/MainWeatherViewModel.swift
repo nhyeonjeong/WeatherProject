@@ -16,12 +16,16 @@ final class MainWeatherViewModel: InputOutput {
     }
     struct Output {
         let outputCityWeather: Driver<CityWeatherModel?>
+        let outputBottomCollectionViewItems: Driver<[MainBottomCollectionViewSectionData]?>
     }
     
     let disposeBag = DisposeBag()
     
     func transform(input: Input) -> Output {
         let outputCityWeather: PublishRelay<CityWeatherModel?> = PublishRelay()
+        let outputBottomCollectionViewItems: PublishRelay<[MainBottomCollectionViewSectionData]?> = PublishRelay()
+        
+        // 도시 API통신(cnt = 7)
         input.inputFetchCityWeatherTrigger
             .flatMap { cityData in
                 return NetworkManager.shared.fetchAPI(type: CityWeatherModel.self, router: WeatherAPIRequest.currentWeather(lat: cityData.coord.lat, lon: cityData.coord.lon))
@@ -30,9 +34,13 @@ final class MainWeatherViewModel: InputOutput {
                     }
             }
             .bind(with: self) { owner, weather in
+                // 상단 UI 업데이트
                 outputCityWeather.accept(weather)
+                // 습도, 구름, 바람 UI 업데이트
+                outputBottomCollectionViewItems.accept(weather.averageList)
             }.disposed(by: disposeBag)
         
-        return Output(outputCityWeather: outputCityWeather.asDriver(onErrorJustReturn: nil))
+        return Output(outputCityWeather: outputCityWeather.asDriver(onErrorJustReturn: nil), outputBottomCollectionViewItems: outputBottomCollectionViewItems.asDriver(onErrorJustReturn: nil))
     }
 }
+
