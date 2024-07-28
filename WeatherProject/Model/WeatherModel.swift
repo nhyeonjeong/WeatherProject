@@ -37,11 +37,14 @@ struct CityWeatherModel: Decodable {
     
     var timeForcastItems: [TimeForcastItem] {
         let data: [TimeForcastItem] = list.map { list in
-            var icon = list.weather[0].icon
-
+            let icon = list.weather[0].icon
             return TimeForcastItem(utcTime:list.dt_txt, descriptionImageString: icon.replacingOccurrences(of: "n", with: "d"), temp: "\(Int(list.main.temp))°")
         }
         return data
+    }
+    
+    var fiveDayForcastItems: [DayForcastItem] {
+        return getFiveDaysWeathers()
     }
 }
 
@@ -75,4 +78,34 @@ struct City: Decodable {
     let name: String
     let coord: Coord
     let country: String
+}
+
+
+extension CityWeatherModel {
+    func getFiveDaysWeathers() -> [DayForcastItem] {
+        guard var weekString = DateFormatManager.getWeekData(utcString: list[0].dt_txt) else {
+            return []
+        }
+        var data: [DayForcastItem] = []
+        var tempMin: Double = 100
+        var tempMax: Double = -100
+        for (index, weather) in list.enumerated() {
+//            print("😎\(weekString)")
+            if index != 0 && index % 8 == 0 {
+//                print("👀")
+                data.append(DayForcastItem(week: weekString, descriptionImageString: "04d", averageTempMin: tempMin, averageTempMax: tempMax))
+                guard let week = DateFormatManager.getWeekData(utcString: list[index].dt_txt) else {
+                    return data
+                }
+                weekString = week
+                // 초기화
+                tempMin = 100
+                tempMax = -100
+            }
+            tempMin = min(tempMin, weather.main.temp_min)
+            tempMax = max(tempMax, weather.main.temp_max)
+        }
+        data.append(DayForcastItem(week: weekString, descriptionImageString: "04d", averageTempMin: tempMin, averageTempMax: tempMax))
+        return data
+    }
 }

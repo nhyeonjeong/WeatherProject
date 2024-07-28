@@ -51,6 +51,7 @@
 		8BA0065F2C562C7100251A95 /* TimeForcastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0065E2C562C7100251A95 /* TimeForcastCollectionViewCell.swift */; };
 		8BA006622C563F0C00251A95 /* DateFormatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA006612C563F0C00251A95 /* DateFormatManager.swift */; };
 		8BA006642C5648E800251A95 /* TimeForcastItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA006632C5648E800251A95 /* TimeForcastItem.swift */; };
+		8BA006662C564B9E00251A95 /* DayForcastItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA006652C564B9E00251A95 /* DayForcastItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,7 @@
 		8BA0065E2C562C7100251A95 /* TimeForcastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeForcastCollectionViewCell.swift; sourceTree = "<group>"; };
 		8BA006612C563F0C00251A95 /* DateFormatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatManager.swift; sourceTree = "<group>"; };
 		8BA006632C5648E800251A95 /* TimeForcastItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeForcastItem.swift; sourceTree = "<group>"; };
+		8BA006652C564B9E00251A95 /* DayForcastItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayForcastItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,6 +269,7 @@
 				8B6AD52E2C5565AA00E7BB8E /* CityModel.swift */,
 				8BA0065C2C561E8D00251A95 /* MainBottomCollectionViewSectionData.swift */,
 				8BA006632C5648E800251A95 /* TimeForcastItem.swift */,
+				8BA006652C564B9E00251A95 /* DayForcastItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 				8BA006622C563F0C00251A95 /* DateFormatManager.swift in Sources */,
 				8B6AD4D42C53F57B00E7BB8E /* BaseView.swift in Sources */,
 				8BA0065B2C56161C00251A95 /* BottomCollectionViewCell.swift in Sources */,
+				8BA006662C564B9E00251A95 /* DayForcastItem.swift in Sources */,
 				8BA006572C5570EF00251A95 /* BaseCollectionViewCell.swift in Sources */,
 				8B6AD4CD2C53F12C00E7BB8E /* APIKey.swift in Sources */,
 				8B6AD51C2C54D6AF00E7BB8E /* MainWeatherViewController.swift in Sources */,
