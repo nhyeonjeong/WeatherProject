@@ -12,7 +12,7 @@ enum UserDefaultKey: String, CaseIterable {
 }
 class UserDefaultManager {
     static let shared = UserDefaultManager()
-    let userDefault = UserDefaults.standard
+    private let userDefault = UserDefaults.standard
     private init() { }
     
     func saveSelectedCityModel(city: CityModel) {

@@ -59,7 +59,7 @@ final class MainWeatherView: BaseView {
     private let tempMinMaxLabel = UILabel().configureTextStyle(align: .center, fontSize: 16, fontWeight: .light)
     
     // 3시간 간격으로 2일간 기온
-    lazy var timeForecastView: MainPointBoxView = {
+    private lazy var timeForecastView: MainPointBoxView = {
         let headerLabel = UILabel().configureTextStyle(fontSize: 12, fontWeight: .semibold)
         let view = MainPointBoxView(headerTextLabel: headerLabel, boxType: .timeForcast, contentView: timeForcastCollectionView)
         return view
@@ -74,7 +74,7 @@ final class MainWeatherView: BaseView {
     }()
     
     // 5일간 일기예보
-    lazy var dayForecastView: MainPointBoxView = {
+    private lazy var dayForecastView: MainPointBoxView = {
         let headerLabel = UILabel().configureTextStyle(fontSize: 12, fontWeight: .semibold)
         let view = MainPointBoxView(headerTextLabel: headerLabel, boxType: .dayForcast, contentView: dayForcastTableView)
         return view
@@ -92,12 +92,12 @@ final class MainWeatherView: BaseView {
     }()
     
     // 강수량 Map
-    lazy var mapForecastView: MainPointBoxView = {
+    private lazy var mapForecastView: MainPointBoxView = {
         let headerLabel = UILabel().configureTextStyle(fontSize: 12, fontWeight: .semibold)
         let view = MainPointBoxView(headerTextLabel: headerLabel, boxType: .map, contentView: mapView)
         return view
     }()
-    let mapView: MKMapView = {
+    private let mapView: MKMapView = {
         let view = MKMapView()
         return view
     }()

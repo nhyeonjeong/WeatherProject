@@ -95,7 +95,7 @@ struct City: Decodable {
 
 
 extension CityWeatherModel {
-    func getFiveDaysWeathers() -> [DayForcastItem] {
+    private func getFiveDaysWeathers() -> [DayForcastItem] {
         guard var weekString = DateFormatManager.getWeekData(utcString: list[0].dt_txt) else {
             return []
         }
@@ -125,6 +125,7 @@ extension CityWeatherModel {
         data[0].week = "오늘"
         return data
     }
+    
     private func choiceWeatherIcon(_ list: [WeatherIcon]) -> WeatherIcon {
         // 우선순위 : 눈 > 번개 > 비 > 실 비 > 나머지중 많이 나온 날씨
         if list.contains(.snow) {
@@ -139,6 +140,7 @@ extension CityWeatherModel {
             return findFrequentElemet(list) ?? .sunny
         }
     }
+    
     private func findFrequentElemet<T: Hashable>(_ array: [T]) -> T? {
          var frequencyDict: [T: Int] = [:]
          for element in array {
