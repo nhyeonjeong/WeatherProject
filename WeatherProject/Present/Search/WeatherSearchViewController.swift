@@ -68,6 +68,9 @@ final class WeatherSearchViewController: BaseViewController {
             .bind(with: self) { owner, cityData in
                 owner.clickedCityData?(cityData)
                 owner.dismiss(animated: true)
+                
+                // Userdefault 선택된 도시 저장
+                UserDefaultManager.shared.saveSelectedCityModel(city: cityData)
             }.disposed(by: disposeBag)
     }
 }

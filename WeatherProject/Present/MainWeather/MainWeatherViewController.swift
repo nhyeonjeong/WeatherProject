@@ -33,12 +33,14 @@ final class MainWeatherViewController: BaseViewController {
         super.viewDidLoad()
         bind()
         // initial data
+        UserDefaultManager.shared.saveSelectedCityModel(city: CityModel.seoulCity)
         inputFetchCityWeatherTrigger.onNext(CityModel.seoulCity)
         inputFetchTimeForcastTrigger.onNext(CityModel.seoulCity)
         
         reconnectTask = {
-            self.inputFetchCityWeatherTrigger.onNext(CityModel.seoulCity)
-            self.inputFetchTimeForcastTrigger.onNext(CityModel.seoulCity)
+            let selectedCity: CityModel? = UserDefaultManager.shared.getSelectedCityModel()
+            self.inputFetchCityWeatherTrigger.onNext(selectedCity ?? CityModel.seoulCity)
+            self.inputFetchTimeForcastTrigger.onNext(selectedCity ?? CityModel.seoulCity)
         }
     }
     private func bind() {
