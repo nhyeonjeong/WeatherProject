@@ -47,6 +47,7 @@
 		8B94A0552C566AFC00B7D9FB /* DayAverageForcastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B94A0542C566AFC00B7D9FB /* DayAverageForcastTableViewCell.swift */; };
 		8B94A0572C56949A00B7D9FB /* NetworkStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B94A0562C56949A00B7D9FB /* NetworkStatusView.swift */; };
 		8B94A0592C56B0F000B7D9FB /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B94A0582C56B0F000B7D9FB /* UserDefaultManager.swift */; };
+		8B94A05C2C56C7D200B7D9FB /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = 8B94A05B2C56C7D200B7D9FB /* SkeletonView */; };
 		8BA006572C5570EF00251A95 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA006562C5570EF00251A95 /* BaseCollectionViewCell.swift */; };
 		8BA006592C55FEB300251A95 /* MainPointBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA006582C55FEB300251A95 /* MainPointBoxView.swift */; };
 		8BA0065B2C56161C00251A95 /* BottomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0065A2C56161C00251A95 /* BottomCollectionViewCell.swift */; };
@@ -110,6 +111,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B6AD5142C548F1B00E7BB8E /* Toast in Frameworks */,
+				8B94A05C2C56C7D200B7D9FB /* SkeletonView in Frameworks */,
 				8B6AD4F62C53FE2400E7BB8E /* Alamofire in Frameworks */,
 				8B6AD4F12C53FE1C00E7BB8E /* RxRelay in Frameworks */,
 				8B6AD4EF2C53FE1C00E7BB8E /* RxCocoa in Frameworks */,
@@ -314,6 +316,7 @@
 				8B6AD4F22C53FE1C00E7BB8E /* RxSwift */,
 				8B6AD4F52C53FE2400E7BB8E /* Alamofire */,
 				8B6AD5132C548F1B00E7BB8E /* Toast */,
+				8B94A05B2C56C7D200B7D9FB /* SkeletonView */,
 			);
 			productName = WeatherProject;
 			productReference = 8B6AD4B12C53DFD000E7BB8E /* WeatherProject.app */;
@@ -348,6 +351,7 @@
 				8B6AD4ED2C53FE1C00E7BB8E /* XCRemoteSwiftPackageReference "RxSwift" */,
 				8B6AD4F42C53FE2400E7BB8E /* XCRemoteSwiftPackageReference "Alamofire" */,
 				8B6AD5122C548F1B00E7BB8E /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				8B94A05A2C56C7D200B7D9FB /* XCRemoteSwiftPackageReference "SkeletonView" */,
 			);
 			productRefGroup = 8B6AD4B22C53DFD000E7BB8E /* Products */;
 			projectDirPath = "";
@@ -679,6 +683,14 @@
 				minimumVersion = 5.1.1;
 			};
 		};
+		8B94A05A2C56C7D200B7D9FB /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Juanpe/SkeletonView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.31.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -711,6 +723,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8B6AD5122C548F1B00E7BB8E /* XCRemoteSwiftPackageReference "Toast-Swift" */;
 			productName = Toast;
+		};
+		8B94A05B2C56C7D200B7D9FB /* SkeletonView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B94A05A2C56C7D200B7D9FB /* XCRemoteSwiftPackageReference "SkeletonView" */;
+			productName = SkeletonView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
