@@ -71,10 +71,6 @@ final class MainWeatherViewController: BaseViewController {
         // map
         output.outputMapLocation
             .drive(with: self) { owner, city in
-                guard let city else {
-                    // nil
-                    return
-                }
                 owner.mainView.addAnnotationWithMoveCamera(city)
             }.disposed(by: disposeBag)
         

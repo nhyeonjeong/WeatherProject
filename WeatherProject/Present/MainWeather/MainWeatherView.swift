@@ -97,6 +97,8 @@ final class MainWeatherView: BaseView {
         return view
     }()
     
+    private let mapViewMessageLabel = UILabel().configureTextStyle(align: .center, fontSize: 12)
+    
     // 습도, 구름, 바람속도 표시 collectionView
     lazy var bottomWeatherCollectionView = {
         let headerLabel = UILabel().configureTextStyle(fontSize: 14)
@@ -108,6 +110,7 @@ final class MainWeatherView: BaseView {
     
     override func configureHierarchy() {
         mainWeatherView.addSubViews([cityNameLabel, currentTempLabel, currentDescriptionLabel, tempMinMaxLabel])
+        mapForecastView.addSubViews([mapViewMessageLabel])
         contentView.addSubViews([mainWeatherView, timeForecastView, dayForecastView, mapForecastView, bottomWeatherCollectionView])
         scrollView.addSubview(contentView)
         addSubViews([searchBar, scrollView])
@@ -158,6 +161,9 @@ final class MainWeatherView: BaseView {
             make.top.equalTo(dayForecastView.snp.bottom).offset(10)
             make.horizontalEdges.equalToSuperview().inset(Constants.Constraint.safeAreaInset)
         }
+        mapViewMessageLabel.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
         bottomWeatherCollectionView.snp.makeConstraints { make in
             make.top.equalTo(mapForecastView.snp.bottom).offset(10)
             make.horizontalEdges.equalToSuperview()
@@ -178,7 +184,14 @@ extension MainWeatherView {
         tempMinMaxLabel.text = "최고: \(data?.list[0].main.temp_max ?? 0)°  |  최저: \(data?.list[0].main.temp_min ?? 0)°"
     }
     
-    func addAnnotationWithMoveCamera(_ city: City) {
+    func addAnnotationWithMoveCamera(_ city: City?, message: String? = nil) {
+        guard let city else {
+            mapView.isHidden = true
+            mapViewMessageLabel.text = message
+            return
+        }
+        mapView.isHidden = false
+        
         let lat = city.coord.lat
         let lon = city.coord.lon
         let annotation = MKPointAnnotation()
