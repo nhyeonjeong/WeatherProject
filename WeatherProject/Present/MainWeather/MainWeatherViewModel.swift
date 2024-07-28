@@ -19,6 +19,7 @@ final class MainWeatherViewModel: InputOutput {
         let outputCityWeather: Driver<CityWeatherModel?>
         let outputBottomCollectionViewItems: Driver<[MainBottomCollectionViewSectionData]?>
         let outputTimeForcastCollectionViewItems: Driver<[TimeForcastItem]?>
+        let outputDayForcastTableViewItems: Driver<[DayForcastItem]?>
     }
     
     let disposeBag = DisposeBag()
@@ -27,6 +28,7 @@ final class MainWeatherViewModel: InputOutput {
         let outputCityWeather: PublishRelay<CityWeatherModel?> = PublishRelay()
         let outputBottomCollectionViewItems: PublishRelay<[MainBottomCollectionViewSectionData]?> = PublishRelay()
         let outputTimeForcastCollectionViewItems: PublishRelay<[TimeForcastItem]?> = PublishRelay()
+        let outputDayForcastTableViewItems: PublishRelay<[DayForcastItem]?> = PublishRelay()
         
         // 도시 API통신(cnt = 7)
         input.inputFetchCityWeatherTrigger
@@ -55,13 +57,15 @@ final class MainWeatherViewModel: InputOutput {
                 // 3시간마다의 일기예보
                 let twoDaysForcastItems = Array(weather.timeForcastItems[0...15])
                 outputTimeForcastCollectionViewItems.accept(twoDaysForcastItems)
-                
+                // 5일간의 일기예보
+                outputDayForcastTableViewItems.accept(weather.fiveDayForcastItems)
             }.disposed(by: disposeBag)
         
         
         return Output(outputCityWeather: outputCityWeather.asDriver(onErrorJustReturn: nil),
                       outputBottomCollectionViewItems: outputBottomCollectionViewItems.asDriver(onErrorJustReturn: nil),
-                      outputTimeForcastCollectionViewItems: outputTimeForcastCollectionViewItems.asDriver(onErrorJustReturn: nil))
+                      outputTimeForcastCollectionViewItems: outputTimeForcastCollectionViewItems.asDriver(onErrorJustReturn: nil),
+                      outputDayForcastTableViewItems: outputDayForcastTableViewItems.asDriver(onErrorJustReturn: nil))
     }
 }
 

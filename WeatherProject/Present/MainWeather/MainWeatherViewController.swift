@@ -61,6 +61,13 @@ final class MainWeatherViewController: BaseViewController {
                 cell.configureCell(element)
             }.disposed(by: disposeBag)
         
+        // 5일 일기예보
+        output.outputDayForcastTableViewItems
+            .map { $0 ?? [] }
+            .drive(mainView.dayForcastTableView.rx.items(cellIdentifier: DayAverageForcastTableViewCell.identifier, cellType: DayAverageForcastTableViewCell.self)) {(row, element, cell) in
+                cell.configureCell(element)
+            }.disposed(by: disposeBag)
+        
         // 하단 습도, 구름, 바람속도 UI 업데이트
         output.outputBottomCollectionViewItems
             .map { $0 ?? [] }

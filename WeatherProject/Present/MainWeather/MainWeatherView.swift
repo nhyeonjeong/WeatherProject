@@ -37,7 +37,7 @@ final class MainWeatherView: BaseView {
         var contentHeight: CGFloat {
             switch self {
             case .timeForcast: return 100
-            case .dayForcast: return 100
+            case .dayForcast: return 250
             case .map: return 100
             }
         }
@@ -63,14 +63,25 @@ final class MainWeatherView: BaseView {
     lazy var timeForcastCollectionView: UICollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: self.timeForcastCollectionViewLayout())
         view.register(TimeForcastCollectionViewCell.self, forCellWithReuseIdentifier: TimeForcastCollectionViewCell.identifier)
+        view.allowsSelection = false
         view.backgroundColor = .clear
         return view
     }()
     
     // 5일간 일기예보
-    let dayForecastView: MainPointBoxView = {
+    lazy var dayForecastView: MainPointBoxView = {
         let headerLabel = UILabel().configureTextStyle(fontSize: 14)
-        let view = MainPointBoxView(headerTextLabel: headerLabel, boxType: .dayForcast, contentView: UIView())
+        let view = MainPointBoxView(headerTextLabel: headerLabel, boxType: .dayForcast, contentView: dayForcastTableView)
+        return view
+    }()
+    var dayForcastTableView: UITableView = {
+        let view = UITableView()
+        view.register(DayAverageForcastTableViewCell.self, forCellReuseIdentifier: DayAverageForcastTableViewCell.identifier)
+        view.rowHeight = SectionBox.dayForcast.contentHeight / 5
+        view.separatorColor = Constants.Color.normal
+        view.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        view.backgroundColor = .clear
+        view.allowsSelection = false
         return view
     }()
     
