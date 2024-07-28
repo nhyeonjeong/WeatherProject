@@ -46,14 +46,16 @@ final class MainWeatherViewModel: InputOutput {
         
         input.inputFetchTimeForcastTrigger
             .flatMap { cityData in
-                return NetworkManager.shared.fetchAPI(type: CityWeatherModel.self, router: WeatherAPIRequest.currentWeather(lat: cityData.coord.lat, lon: cityData.coord.lon, cnt: 16))
+                return NetworkManager.shared.fetchAPI(type: CityWeatherModel.self, router: WeatherAPIRequest.currentWeather(lat: cityData.coord.lat, lon: cityData.coord.lon, cnt: 40))
                     .catch { error in
                         return Observable.empty()
                     }
             }
             .bind(with: self) { owner, weather in
                 // 3시간마다의 일기예보
-                outputTimeForcastCollectionViewItems.accept(weather.timeForcastItems)
+                let twoDaysForcastItems = Array(weather.timeForcastItems[0...15])
+                outputTimeForcastCollectionViewItems.accept(twoDaysForcastItems)
+                
             }.disposed(by: disposeBag)
         
         
