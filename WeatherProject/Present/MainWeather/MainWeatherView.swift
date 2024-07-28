@@ -186,16 +186,17 @@ final class MainWeatherView: BaseView {
 }
 
 extension MainWeatherView {
-    func configureCurrentWeather(_ data: CityWeatherModel?) {
+    func configureCurrentWeather(_ data: NewCityWeatherModel?) {
         // 배경
-        if let data {
-            let weather = data.list[0].weather[0].main.lowercased()
-            backgroundImageView.image = weather == "clear" ? UIImage(named: "sunny") : UIImage(named: "\(data.list[0].weather[0].main.lowercased())")
+        let currentWeather = data?.weatherList[0]
+        if let currentWeather {
+            let weather = currentWeather.main.lowercased()
+            backgroundImageView.image = weather == "clear" ? UIImage(named: "sunny") : UIImage(named: "\(currentWeather.main.lowercased())")
         }
         cityNameLabel.text = data?.city.name ?? "-"
-        currentTempLabel.text = "\(data?.list[0].main.temp ?? 0)°"
-        currentDescriptionLabel.text = data?.list[0].weather[0].description ?? "-"
-        tempMinMaxLabel.text = "최고: \(data?.list[0].main.temp_max ?? 0)°  |  최저: \(data?.list[0].main.temp_min ?? 0)°"
+        currentTempLabel.text = "\(currentWeather?.temp ?? 0)°"
+        currentDescriptionLabel.text = currentWeather?.description ?? "-"
+        tempMinMaxLabel.text = "최고: \(currentWeather?.temp_max ?? 0)°  |  최저: \(currentWeather?.temp_min ?? 0)°"
     }
     
     func addAnnotationWithMoveCamera(_ city: City?, message: String? = nil) {

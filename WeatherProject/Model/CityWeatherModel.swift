@@ -25,17 +25,12 @@ struct CityWeatherModel: Decodable {
     let list: [List]
     let city: City
     
-    enum CodingKeys: CodingKey {
-        case cnt
-        case list
-        case city
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.cnt = try container.decode(Int.self, forKey: .cnt)
-        self.list = try container.decode([List].self, forKey: .list)
-        self.city = try container.decode(City.self, forKey: .city)
+    // 공통으로 쓰일 새로운 구조체
+    var newWeatherList: NewCityWeatherModel {
+        let weatherList = list.map { list in
+            return NewMain(temp: list.main.temp, temp_min: list.main.temp_min, temp_max: list.main.temp_max, humidity: list.main.humidity, clouds: list.clouds.all, windSpeed: list.wind.speed, dt_txt: list.dt_txt, main: list.weather[0].main, description: list.weather[0].description, icon: list.weather[0].icon)
+        }
+        return NewCityWeatherModel(city: city, weatherList: weatherList)
     }
 
     var averageList: [MainBottomCollectionViewSectionData] {

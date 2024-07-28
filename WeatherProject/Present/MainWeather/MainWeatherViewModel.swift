@@ -16,7 +16,7 @@ final class MainWeatherViewModel: InputOutput {
         let inputFetchTimeForcastTrigger: PublishSubject<CityModel>
     }
     struct Output {
-        let outputCityWeather: Driver<CityWeatherModel?>
+        let outputCityWeather: Driver<NewCityWeatherModel?>
         let outputBottomCollectionViewItems: Driver<[MainBottomCollectionViewSectionData]?>
         let outputTimeForcastCollectionViewItems: Driver<[TimeForcastItem]?>
         let outputDayForcastTableViewItems: Driver<[DayForcastItem]?>
@@ -26,7 +26,7 @@ final class MainWeatherViewModel: InputOutput {
     let disposeBag = DisposeBag()
     
     func transform(input: Input) -> Output {
-        let outputCityWeather: PublishRelay<CityWeatherModel?> = PublishRelay()
+        let outputCityWeather: PublishRelay<NewCityWeatherModel?> = PublishRelay()
         let outputBottomCollectionViewItems: PublishRelay<[MainBottomCollectionViewSectionData]?> = PublishRelay()
         let outputTimeForcastCollectionViewItems: PublishRelay<[TimeForcastItem]?> = PublishRelay()
         let outputDayForcastTableViewItems: PublishRelay<[DayForcastItem]?> = PublishRelay()
@@ -44,7 +44,7 @@ final class MainWeatherViewModel: InputOutput {
             }
             .bind(with: self) { owner, weather in
                 // 상단 UI 업데이트
-                outputCityWeather.accept(weather)
+                outputCityWeather.accept(weather.newWeatherList)
                 // 습도, 구름, 바람 UI 업데이트
                 outputBottomCollectionViewItems.accept(weather.averageList)
                 // 지도 annotation표시
