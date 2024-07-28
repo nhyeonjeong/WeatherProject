@@ -9,13 +9,13 @@ import UIKit
 
 final class DayAverageForcastTableViewCell: BaseTableViewCell {
 
-    private let weekLabel = UILabel().configureTextStyle(fontSize: 18)
+    private let weekLabel = UILabel().configureTextStyle(fontSize: 16)
     private let weatherImageView = {
         let view = UIImageView(frame: .zero)
         view.contentMode = .scaleAspectFit
         return view
     }()
-    private let tempLabel = UILabel().configureTextStyle(align: .right, fontSize: 16, fontWeight: .light)
+    private let tempLabel = UILabel().configureTextStyle(align: .right, fontSize: 14, fontWeight: .light)
     
     override func configureHierarchy() {
         contentView.addSubViews([weekLabel, weatherImageView, tempLabel])

@@ -64,8 +64,8 @@ class MainPointBoxView: BaseView {
     override func configureView() {
         self.layer.cornerRadius = 10
         self.clipsToBounds = true
-        self.backgroundColor = Constants.Color.point
-        self.headerUnderLine.backgroundColor = Constants.Color.normal
+        self.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        self.headerUnderLine.backgroundColor = Constants.Color.text.withAlphaComponent(0.5)
         self.headerTextLabel?.text = boxType.boxTitle
     }
 }

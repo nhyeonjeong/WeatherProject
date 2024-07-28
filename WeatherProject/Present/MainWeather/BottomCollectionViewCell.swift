@@ -30,9 +30,9 @@ final class BottomCollectionViewCell: BaseCollectionViewCell {
         }
     }
     
-    private let titleLabel = UILabel().configureTextStyle(fontSize: 18)
+    private let titleLabel = UILabel().configureTextStyle(fontSize: 14)
     private let contentLabel = {
-        let view = UILabel().configureTextStyle(fontSize: 30, fontWeight: .semibold)
+        let view = UILabel().configureTextStyle(fontSize: 26, fontWeight: .semibold)
         view.numberOfLines = 2
         return view
     }()
@@ -51,7 +51,7 @@ final class BottomCollectionViewCell: BaseCollectionViewCell {
         }
     }
     override func configureView() {
-        contentView.backgroundColor = Constants.Color.point
+        contentView.backgroundColor = .black.withAlphaComponent(0.5)
         contentView.layer.cornerRadius = 10
     }
 }

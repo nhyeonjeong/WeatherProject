@@ -90,9 +90,9 @@ extension CityWeatherModel {
         var tempMin: Double = 100
         var tempMax: Double = -100
         for (index, weather) in list.enumerated() {
-//            print("😎\(weekString)")
+            print("😎\(weekString)")
             if index != 0 && index % 8 == 0 {
-//                print("👀")
+                print("👀")
                 data.append(DayForcastItem(week: weekString, descriptionImageString: "04d", averageTempMin: tempMin, averageTempMax: tempMax))
                 guard let week = DateFormatManager.getWeekData(utcString: list[index].dt_txt) else {
                     return data
@@ -106,6 +106,7 @@ extension CityWeatherModel {
             tempMax = max(tempMax, weather.main.temp_max)
         }
         data.append(DayForcastItem(week: weekString, descriptionImageString: "04d", averageTempMin: tempMin, averageTempMax: tempMax))
+        data[0].week = "오늘"
         return data
     }
 }

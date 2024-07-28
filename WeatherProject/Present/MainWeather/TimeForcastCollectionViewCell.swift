@@ -16,7 +16,7 @@ final class TimeForcastCollectionViewCell: BaseCollectionViewCell {
         view.contentMode = .scaleAspectFit
         return view
     }()
-    private let tempLabel = UILabel().configureTextStyle(align: .center, fontSize: 12)
+    private let tempLabel = UILabel().configureTextStyle(align: .center, fontSize: 14, fontWeight: .bold)
     
     override func configureHierarchy() {
         contentView.addSubViews([timeLabel, weatherImageView, tempLabel])
@@ -29,8 +29,8 @@ final class TimeForcastCollectionViewCell: BaseCollectionViewCell {
         }
         weatherImageView.snp.makeConstraints { make in
             make.top.equalTo(timeLabel.snp.bottom).offset(2)
-            make.horizontalEdges.equalTo(contentView)
-            make.height.equalTo(60)
+            make.centerX.equalTo(contentView)
+            make.size.equalTo(30)
         }
         tempLabel.snp.makeConstraints { make in
             make.top.equalTo(weatherImageView.snp.bottom).offset(2)
