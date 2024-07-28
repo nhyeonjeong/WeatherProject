@@ -9,6 +9,18 @@ import Foundation
 
 // API통신을 위한 구조체
 struct CityWeatherModel: Decodable {
+    enum WeatherIcon: String {
+        case sunny = "01d"
+        case clouds_02 = "02d"
+        case clouds_03 = "03d"
+        case clouds_all = "04d"
+        case rain = "09d"
+        case rainSunny = "10d"
+        case thunder = "11d"
+        case snow = "13d"
+        case fog = "50d"
+    }
+    
     let cnt: Int
     let list: [List]
     let city: City
@@ -90,11 +102,11 @@ extension CityWeatherModel {
         var data: [DayForcastItem] = []
         var tempMin: Double = 100
         var tempMax: Double = -100
+        var dayWeatherList: [WeatherIcon] = []
         for (index, weather) in list.enumerated() {
-            print("😎\(weekString)")
             if index != 0 && index % 8 == 0 {
-                print("👀")
-                data.append(DayForcastItem(week: weekString, descriptionImageString: "04d", averageTempMin: tempMin, averageTempMax: tempMax))
+                let weatheIcon = choiceWeatherIcon(dayWeatherList)
+                data.append(DayForcastItem(week: weekString, descriptionImageString: weatheIcon.rawValue, averageTempMin: tempMin, averageTempMax: tempMax))
                 guard let week = DateFormatManager.getWeekData(utcString: list[index].dt_txt) else {
                     return data
                 }
@@ -102,12 +114,37 @@ extension CityWeatherModel {
                 // 초기화
                 tempMin = 100
                 tempMax = -100
+                dayWeatherList = []
             }
             tempMin = min(tempMin, weather.main.temp_min)
             tempMax = max(tempMax, weather.main.temp_max)
+            dayWeatherList.append(WeatherIcon(rawValue: weather.weather[0].icon.replacingOccurrences(of: "n", with: "d")) ?? .sunny)
         }
-        data.append(DayForcastItem(week: weekString, descriptionImageString: "04d", averageTempMin: tempMin, averageTempMax: tempMax))
+        let weatheIcon = choiceWeatherIcon(dayWeatherList)
+        data.append(DayForcastItem(week: weekString, descriptionImageString: weatheIcon.rawValue, averageTempMin: tempMin, averageTempMax: tempMax))
         data[0].week = "오늘"
         return data
+    }
+    private func choiceWeatherIcon(_ list: [WeatherIcon]) -> WeatherIcon {
+        // 우선순위 : 눈 > 번개 > 비 > 실 비 > 나머지중 많이 나온 날씨
+        if list.contains(.snow) {
+            return .snow
+        } else if list.contains(.thunder) {
+            return .thunder
+        } else if list.contains(.rain) {
+            return .rain
+        } else if list.contains(.rainSunny) {
+            return .rainSunny
+        } else {
+            return findFrequentElemet(list) ?? .sunny
+        }
+    }
+    private func findFrequentElemet<T: Hashable>(_ array: [T]) -> T? {
+         var frequencyDict: [T: Int] = [:]
+         for element in array {
+             frequencyDict[element, default: 0] += 1
+         }
+         let mostFrequent = frequencyDict.max { a, b in a.value < b.value }
+         return mostFrequent?.key
     }
 }
