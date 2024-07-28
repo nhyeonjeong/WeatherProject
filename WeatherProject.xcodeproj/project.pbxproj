@@ -45,6 +45,7 @@
 		8B6AD52D2C55624E00E7BB8E /* QueryKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6AD52C2C55624E00E7BB8E /* QueryKey.swift */; };
 		8B6AD52F2C5565AA00E7BB8E /* CityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6AD52E2C5565AA00E7BB8E /* CityModel.swift */; };
 		8B94A0552C566AFC00B7D9FB /* DayAverageForcastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B94A0542C566AFC00B7D9FB /* DayAverageForcastTableViewCell.swift */; };
+		8B94A0572C56949A00B7D9FB /* NetworkStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B94A0562C56949A00B7D9FB /* NetworkStatusView.swift */; };
 		8BA006572C5570EF00251A95 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA006562C5570EF00251A95 /* BaseCollectionViewCell.swift */; };
 		8BA006592C55FEB300251A95 /* MainPointBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA006582C55FEB300251A95 /* MainPointBoxView.swift */; };
 		8BA0065B2C56161C00251A95 /* BottomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0065A2C56161C00251A95 /* BottomCollectionViewCell.swift */; };
@@ -90,6 +91,7 @@
 		8B6AD52C2C55624E00E7BB8E /* QueryKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryKey.swift; sourceTree = "<group>"; };
 		8B6AD52E2C5565AA00E7BB8E /* CityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityModel.swift; sourceTree = "<group>"; };
 		8B94A0542C566AFC00B7D9FB /* DayAverageForcastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayAverageForcastTableViewCell.swift; sourceTree = "<group>"; };
+		8B94A0562C56949A00B7D9FB /* NetworkStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatusView.swift; sourceTree = "<group>"; };
 		8BA006562C5570EF00251A95 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		8BA006582C55FEB300251A95 /* MainPointBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPointBoxView.swift; sourceTree = "<group>"; };
 		8BA0065A2C56161C00251A95 /* BottomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 			children = (
 				8B6AD4FF2C54081800E7BB8E /* CustomSearchBar.swift */,
 				8BA006582C55FEB300251A95 /* MainPointBoxView.swift */,
+				8B94A0562C56949A00B7D9FB /* NetworkStatusView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 				8BA0065B2C56161C00251A95 /* BottomCollectionViewCell.swift in Sources */,
 				8BA006662C564B9E00251A95 /* DayForcastItem.swift in Sources */,
 				8BA006572C5570EF00251A95 /* BaseCollectionViewCell.swift in Sources */,
+				8B94A0572C56949A00B7D9FB /* NetworkStatusView.swift in Sources */,
 				8B6AD4CD2C53F12C00E7BB8E /* APIKey.swift in Sources */,
 				8B6AD51C2C54D6AF00E7BB8E /* MainWeatherViewController.swift in Sources */,
 				8B6AD5282C5554B800E7BB8E /* WeatherModel.swift in Sources */,
@@ -558,6 +562,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3D3V9NJ477;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherProject/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -589,6 +594,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3D3V9NJ477;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherProject/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

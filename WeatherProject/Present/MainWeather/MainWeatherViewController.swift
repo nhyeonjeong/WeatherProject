@@ -35,6 +35,11 @@ final class MainWeatherViewController: BaseViewController {
         // initial data
         inputFetchCityWeatherTrigger.onNext(CityModel.seoulCity)
         inputFetchTimeForcastTrigger.onNext(CityModel.seoulCity)
+        
+        reconnectTask = {
+            self.inputFetchCityWeatherTrigger.onNext(CityModel.seoulCity)
+            self.inputFetchTimeForcastTrigger.onNext(CityModel.seoulCity)
+        }
     }
     private func bind() {
         searchBarTapGesture.rx.event
