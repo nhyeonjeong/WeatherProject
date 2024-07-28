@@ -19,7 +19,7 @@ final class WeatherSearchView: BaseView {
         return view
     }()
     
-    let noResultMessageLabel = {
+    private let noResultMessageLabel = {
         let view = UILabel()
         view.text = "검색 결과가 없습니다"
         view.font = UIFont.systemFont(ofSize: 16)
