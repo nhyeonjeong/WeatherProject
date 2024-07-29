@@ -81,7 +81,7 @@ extension WeatherSearchViewModel {
             let encodingResult = try JSONDecoder().decode([CityModel].self, from: jsonData)
             return encodingResult
         } catch {
-            print("🐈‍⬛", error)
+            print(#function, error)
             return nil
         }
     }

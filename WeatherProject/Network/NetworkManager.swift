@@ -41,7 +41,6 @@ final class NetworkManager {
                             if let error = retryError as? WeatherAPIError, error == .overLimit {
                                 observer.onError(error)
                             } else {
-        //                        print("🐈‍⬛ failure: \(failure)")
                                 let statusCode = response.response?.statusCode
                                 observer.onError(WeatherAPIError.statusCodeChangeToError(statusCode: statusCode))
                             }

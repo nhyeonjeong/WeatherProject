@@ -288,10 +288,8 @@ extension MainWeatherView {
         let group: NSCollectionLayoutGroup
         if #available(iOS 16.0, *) { // 16버전 이상에서
             group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-            print("iOS 16.0이상")
         } else {
             group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
-            print("iOS 15.0이하")
         }
         group.interItemSpacing = .fixed(10) // item간의 가로 간격
         // Section

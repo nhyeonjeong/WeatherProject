@@ -40,7 +40,6 @@ final class MainWeatherViewModel: InputOutput {
             .flatMap { cityData in
                 // 유저디폴트 저장
                 UserDefaultManager.shared.saveSelectedCityModel(city: cityData)
-                print("🍕network")
                 return NetworkManager.shared.fetchAPI(type: CityWeatherModel.self, router: WeatherAPIRequest.currentWeather(lat: cityData.coord.lat, lon: cityData.coord.lon))
                     .catch { error in
                         guard let error = error as? WeatherAPIError else {
@@ -67,7 +66,6 @@ final class MainWeatherViewModel: InputOutput {
         input.inputFetchTimeForcastTrigger
             .debounce(.seconds(2), scheduler: MainScheduler.instance)
             .flatMap { cityData in
-                print("🍕network")
                 return NetworkManager.shared.fetchAPI(type: CityWeatherModel.self, router: WeatherAPIRequest.currentWeather(lat: cityData.coord.lat, lon: cityData.coord.lon, cnt: 40))
                     .catch { error in
                         guard let error = error as? WeatherAPIError else {
