@@ -39,21 +39,23 @@
 #### `3. 도시검색시 도시 정보 UserDefualts저장`
    - 이후 앱 종료 후 진입 시 저장된 검색도시 정보 표시
 #### `4. 네트워크 비연결시 Toast메세지 / 재연결시 API통신`
-  - 네트워크 상황 중복 감지로 인한 API통신 중복 호출 -> debounce
+  - 네트워크 상황 중복 감지로 인한 API통신 중복 호출 -> rxSwift debounce
 #### `5. '5일간의 일기예보' 대표 날씨 기준 적립`
   - 우선순위 : 눈 > 번개 > 비 > 실 비 > 나머지중 많이 나온 날씨
 #### `6. 현재 날씨에 따른 배경 이미지 지정`
-#### `7. .gitignore 통한 baseURL, APIKey관리`
+#### `7. 검색 시 Toast를 통한 로딩뷰`
+  - 화면 표시 전 searchBar userInteractionEnabled = false
+#### `8. .gitignore 통한 baseURL, APIKey관리`
 #### `8. 중복되는 뷰 CustomView분리`
-#### `9. 데이터 가공 뷰 맞춤 DTO 구현`
-#### `10. 메모리 효율성을 위한 DataFormatManager싱글톤 생성 및 DateFormatter()객체 저장후 재사용`
+#### `10. 데이터 가공 뷰 맞춤 DTO 구현`
+#### `11. 메모리 효율성을 위한 DataFormatManager싱글톤 생성 및 DateFormatter()객체 저장후 재사용`
 
 ## ☔️기술설명
 - MVVM InputOutput패턴
   - ViewController과 ViewModel을 분리하고 RxSwift, RxCocoa 사용해 MVVM InputOutput패턴 작성
 - Alamofire과 Generic을 사용한 네트워크통신 NetworkManager Singleton패턴 구성
-  - Enum을 통한 statusCode관리
-  - Error이벤트 전송 Observable객체 반환
+  - Enum을 통한 statusCode관리, Error이벤트 전송 Observable객체 반환
+  - rxSwift catch를 통한 statusCode에 따른 에러메세지 Toast
   - URLRequestConvertible을 통한 Router Pattern, Enum을 통한 QueryKey관리
 - NWPathMonitorManager 싱글턴 구성 및 네트워크 상황 감지
   - 네트워크 비연결 / 재연결에 따른 클로저 실행
