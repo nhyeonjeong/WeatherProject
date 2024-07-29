@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		8B6AD4B52C53DFD000E7BB8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6AD4B42C53DFD000E7BB8E /* AppDelegate.swift */; };
 		8B6AD4B72C53DFD000E7BB8E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6AD4B62C53DFD000E7BB8E /* SceneDelegate.swift */; };
-		8B6AD4B92C53DFD000E7BB8E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6AD4B82C53DFD000E7BB8E /* ViewController.swift */; };
-		8B6AD4BC2C53DFD000E7BB8E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B6AD4BA2C53DFD000E7BB8E /* Main.storyboard */; };
 		8B6AD4BE2C53DFD200E7BB8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B6AD4BD2C53DFD200E7BB8E /* Assets.xcassets */; };
 		8B6AD4C12C53DFD200E7BB8E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B6AD4BF2C53DFD200E7BB8E /* LaunchScreen.storyboard */; };
 		8B6AD4C92C53ED3200E7BB8E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 8B6AD4C82C53ED3200E7BB8E /* .gitignore */; };
@@ -66,8 +64,6 @@
 		8B6AD4B12C53DFD000E7BB8E /* WeatherProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B6AD4B42C53DFD000E7BB8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B6AD4B62C53DFD000E7BB8E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8B6AD4B82C53DFD000E7BB8E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		8B6AD4BB2C53DFD000E7BB8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8B6AD4BD2C53DFD200E7BB8E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8B6AD4C02C53DFD200E7BB8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8B6AD4C22C53DFD200E7BB8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -164,8 +160,6 @@
 				8B6AD5042C54126A00E7BB8E /* Resource */,
 				8B6AD4B42C53DFD000E7BB8E /* AppDelegate.swift */,
 				8B6AD4B62C53DFD000E7BB8E /* SceneDelegate.swift */,
-				8B6AD4B82C53DFD000E7BB8E /* ViewController.swift */,
-				8B6AD4BA2C53DFD000E7BB8E /* Main.storyboard */,
 				8B6AD4BD2C53DFD200E7BB8E /* Assets.xcassets */,
 				8B6AD4BF2C53DFD200E7BB8E /* LaunchScreen.storyboard */,
 				8B6AD4C22C53DFD200E7BB8E /* Info.plist */,
@@ -400,7 +394,6 @@
 				8B6AD5062C54129400E7BB8E /* reduced_citylist.json in Resources */,
 				8B6AD4C12C53DFD200E7BB8E /* LaunchScreen.storyboard in Resources */,
 				8B6AD4BE2C53DFD200E7BB8E /* Assets.xcassets in Resources */,
-				8B6AD4BC2C53DFD000E7BB8E /* Main.storyboard in Resources */,
 				8BC6AF5A2C57C6ED005C70E4 /* loadingLottie.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -423,7 +416,6 @@
 				8B6AD52B2C55622900E7BB8E /* WeatherAPIError.swift in Sources */,
 				8B6AD4D22C53F4E800E7BB8E /* BaseViewController.swift in Sources */,
 				8B6AD5032C540E2700E7BB8E /* Constants.swift in Sources */,
-				8B6AD4B92C53DFD000E7BB8E /* ViewController.swift in Sources */,
 				8B6AD5002C54081800E7BB8E /* CustomSearchBar.swift in Sources */,
 				8B6AD5112C541EC000E7BB8E /* WeatherSearchViewModel.swift in Sources */,
 				8B6AD5082C54136B00E7BB8E /* BaseTableViewCell.swift in Sources */,
@@ -457,14 +449,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		8B6AD4BA2C53DFD000E7BB8E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8B6AD4BB2C53DFD000E7BB8E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		8B6AD4BF2C53DFD200E7BB8E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -608,7 +592,6 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "남현정";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -641,7 +624,6 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "남현정";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
