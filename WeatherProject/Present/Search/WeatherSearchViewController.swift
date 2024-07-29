@@ -53,9 +53,7 @@ final class WeatherSearchViewController: BaseViewController {
         
         output.outputErrorToastMessage
             .drive(with: self) { owner, message in
-                DispatchQueue.main.async {
-                    owner.view.makeToast(message, duration: 1.0, position: .center)
-                }
+                owner.view.makeToast(message, duration: 1.0, position: .center)
             }.disposed(by: disposeBag)
         
         output.outputIsResultEmpty

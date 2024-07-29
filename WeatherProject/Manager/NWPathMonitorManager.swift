@@ -17,7 +17,7 @@ final class NWPathMonitorManager {
     
     private init() { }
     
-    func monitorNetworkStatus(reconnectTask: @escaping (() -> Void), notConnectTask: @escaping (() -> Void)) {
+    func monitorNetworkStatus(reconnectTask: @escaping (() -> Void), notConnectTask: (() -> Void)?) {
         networkMonitor.pathUpdateHandler = { path in // 상태 반환
             DispatchQueue.main.async {
                 if path.status == .satisfied {
@@ -30,7 +30,8 @@ final class NWPathMonitorManager {
                     print("🐈‍⬛ 끊김")
                     if self.isConnected == true {
                         self.isConnected = false
-                        notConnectTask()
+                        notConnectTask?()
+                        
                     }
                 }
             }
