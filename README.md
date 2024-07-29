@@ -1,6 +1,7 @@
 # WeatherProject
 
 ## ☔️스크린샷
+![리드미 스크린샷 001](https://github.com/user-attachments/assets/8f312c87-1052-44ba-9a0d-9c4bc70952d3)
 
 
 ## ☔️프로젝트 소개
@@ -28,27 +29,54 @@
 
 ## ☔️개발적 고려사항
 ### Search화면
-#### `1. 도시 TableView 스크롤시 Keyboard대응`
-#### `2. 검색결과 없을 시 검색결과 없음 문구 표시`
-#### `3. 대소문자 구분 없이 검색가능`
+#### `1. 대소문자 구분 없이 검색가능`
+---
+#### `2-1. 도시 TableView 스크롤시 Keyboard대응`
+#### `2-2. 검색결과 없을 시 검색결과 없음 문구 표시`
+<img width="30%" src="https://github.com/user-attachments/assets/657ea618-25d1-417d-a197-6db715129209">
+<img width="30%" src="https://github.com/user-attachments/assets/74bf07b5-61a3-4164-a3c9-4acd893047a1">
+
 
 ### Main화면
 #### `1. 첫화면 진입 시 SkeletonView 로딩뷰 구현`
    - 화면 표시 전 searchBar userInteractionEnabled = false
-#### `2. Search화면 도시 선택 시 Main화면 스크롤 top처리`
-#### `3. 도시검색시 도시 정보 UserDefualts저장`
-   - 이후 앱 종료 후 진입 시 저장된 검색도시 정보 표시
-#### `4. 네트워크 비연결시 Toast메세지 / 재연결시 API통신`
-  - 네트워크 상황 중복 감지로 인한 API통신 중복 호출 -> rxSwift debounce
-#### `5. '5일간의 일기예보' 대표 날씨 기준 적립`
-  - 우선순위 : 눈 > 번개 > 비 > 실 비 > 나머지중 많이 나온 날씨
-#### `6. 현재 날씨에 따른 배경 이미지 지정`
-#### `7. 검색 시 Toast를 통한 로딩뷰`
+<img width="30%" src="https://github.com/user-attachments/assets/242fa5f2-2bc1-4b6a-be93-6ad850a491ef">
+
+---
+
+#### `2-1. Search화면 도시 선택 시 Main화면 스크롤 top처리`
+#### `2-2. 검색 시 Toast를 통한 로딩뷰`
   - 화면 표시 전 searchBar userInteractionEnabled = false
-#### `8. .gitignore 통한 baseURL, APIKey관리`
-#### `8. 중복되는 뷰 CustomView분리`
-#### `10. 데이터 가공 뷰 맞춤 DTO 구현`
-#### `11. 메모리 효율성을 위한 DataFormatManager싱글톤 생성 및 DateFormatter()객체 저장후 재사용`
+#### `2-3. 현재 날씨에 따른 배경 이미지 지정`
+#### `2-4. 도시검색시 도시 정보 UserDefualts저장`
+   - 이후 앱 종료 후 진입 시 저장된 검색도시 정보 표시
+<img width="30%" src="https://github.com/user-attachments/assets/2416c228-4b1c-4ce6-b61f-4d487e9436c3">
+<img width="30%" src="https://github.com/user-attachments/assets/669ac654-42f4-41b3-b1c5-b22b690c7509">
+
+---
+
+#### `3. 네트워크 비연결시 Toast메세지 / 재연결시 API통신`
+  - 네트워크 상황 중복 감지로 인한 API통신 중복 호출 -> rxSwift debounce
+
+
+![스크린샷 2024-07-29 오후 11 44 10](https://github.com/user-attachments/assets/4348bf64-401d-4d94-bf44-a1bd740f29a6)
+
+
+<img width="30%" src="https://github.com/user-attachments/assets/cc5e01d1-84e4-494c-9ded-c44c1e5ef84f">
+
+---
+
+#### `4. '5일간의 일기예보' 대표 날씨 기준 적립`
+  - 우선순위 : 눈 > 번개 > 비 > 실 비 > 나머지중 많이 나온 날씨
+<img width="30%" src="https://github.com/user-attachments/assets/690a2b1a-a774-4b7a-8f18-c7029424365f">
+<img width="30%" src="https://github.com/user-attachments/assets/6eb0aec1-3a37-4173-a9a6-32594699da8b">
+
+---
+
+#### `5. .gitignore 통한 baseURL, APIKey관리`
+#### `6. 중복되는 뷰 CustomView분리`
+#### `7. 데이터 가공 뷰 맞춤 DTO 구현`
+#### `8. 메모리 효율성을 위한 DataFormatManager싱글톤 생성 및 DateFormatter()객체 저장후 재사용`
 
 ## ☔️기술설명
 - MVVM InputOutput패턴
@@ -130,7 +158,4 @@ Search화면 네트워크 단절 상황시 Toast메세지가 Main화면에 표�
 
 </div>
 </details>
-
-
-## ☔️기술회고
 
