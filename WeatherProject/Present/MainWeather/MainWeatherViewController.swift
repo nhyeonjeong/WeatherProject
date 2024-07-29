@@ -37,8 +37,9 @@ final class MainWeatherViewController: BaseViewController {
         mainView.showSkeletonView()
         bind()
         // initial data
-        inputFetchCityWeatherTrigger.onNext(CityModel.seoulCity)
-        inputFetchTimeForcastTrigger.onNext(CityModel.seoulCity)
+        let selectedCity: CityModel? = UserDefaultManager.shared.getSelectedCityModel()
+        inputFetchCityWeatherTrigger.onNext(selectedCity ?? CityModel.seoulCity)
+        inputFetchTimeForcastTrigger.onNext(selectedCity ?? CityModel.seoulCity)
         
         // 네트워크 재연결시 대응
         setNetworkTask {
