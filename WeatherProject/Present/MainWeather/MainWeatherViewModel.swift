@@ -48,9 +48,7 @@ final class MainWeatherViewModel: InputOutput {
                         outputCityWeather.accept(nil)
                         outputBottomCollectionViewItems.accept(nil)
                         outputMapLocation.accept(nil)
-                        if error == .overLimit {
-                            outputErrorMessage.accept("통신 횟수를 초과했습니다")
-                        }
+                        outputErrorMessage.accept(error.errorMessage)
                         return Observable.never()
                     }
             }
@@ -73,9 +71,7 @@ final class MainWeatherViewModel: InputOutput {
                         }
                         outputTimeForcastCollectionViewItems.accept(nil)
                         outputDayForcastTableViewItems.accept(nil)
-                        if error == .overLimit {
-                            outputErrorMessage.accept("통신 횟수를 초과했습니다")
-                        }
+                        outputErrorMessage.accept(error.errorMessage)
                         return Observable.never()
                     }
             }

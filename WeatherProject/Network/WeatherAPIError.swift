@@ -27,4 +27,12 @@ enum WeatherAPIError: Error {
         default: return .otherError
         }
     }
+    
+    var errorMessage: String {
+        switch self {
+        case .invalidURLRequest, .invalidAPIKey, .wrongRequest, .otherError: return "통신오류가 발생했습니다"
+        case .overLimit: return "통신 횟수를 초과하였습니다"
+        case .returnError : return "반환 에러가 발생했습니다"
+        }
+    }
 }
