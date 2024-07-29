@@ -10,7 +10,8 @@ import Foundation
 enum UserDefaultKey: String, CaseIterable {
     case selectedCity
 }
-class UserDefaultManager {
+
+final class UserDefaultManager {
     static let shared = UserDefaultManager()
     private let userDefault = UserDefaults.standard
     private init() { }
