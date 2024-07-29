@@ -233,6 +233,8 @@ extension MainWeatherView {
         currentTempLabel.text = "\(currentWeather?.temp ?? 0)°"
         currentDescriptionLabel.text = currentWeather?.description ?? "-"
         tempMinMaxLabel.text = "최고: \(currentWeather?.temp_max ?? 0)°  |  최저: \(currentWeather?.temp_min ?? 0)°"
+        
+        viewUpToTop() // 스크롤뷰 제일 위로 올리기
     }
     
     func addAnnotationWithMoveCamera(_ city: City?, message: String? = nil) {
@@ -254,7 +256,9 @@ extension MainWeatherView {
         let region = MKCoordinateRegion(center: location, span: span)
         mapView.setRegion(region, animated: true)
     }
-    
+    func viewUpToTop() {
+        scrollView.setContentOffset(.zero, animated: true)
+    }
     func showSkeletonView() {
         contentView.showAnimatedGradientSkeleton()
         searchBar.isUserInteractionEnabled = false

@@ -63,7 +63,6 @@ final class MainWeatherViewController: BaseViewController {
             .drive(with: self) { owner, weather in
                 owner.mainView.configureCurrentWeather(weather)
                 owner.mainView.removeSkeletonView()
-                
             }.disposed(by: disposeBag)
         
         // 3시간마다의 날씨
