@@ -36,7 +36,6 @@ final class MainWeatherViewController: BaseViewController {
         mainView.showSkeletonView()
         bind()
         // initial data
-        UserDefaultManager.shared.saveSelectedCityModel(city: CityModel.seoulCity)
         inputFetchCityWeatherTrigger.onNext(CityModel.seoulCity)
         inputFetchTimeForcastTrigger.onNext(CityModel.seoulCity)
         

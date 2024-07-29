@@ -38,6 +38,8 @@ final class MainWeatherViewModel: InputOutput {
         input.inputFetchCityWeatherTrigger
             .debounce(.seconds(2), scheduler: MainScheduler.instance)
             .flatMap { cityData in
+                // 유저디폴트 저장
+                UserDefaultManager.shared.saveSelectedCityModel(city: cityData)
                 print("🍕network")
                 return NetworkManager.shared.fetchAPI(type: CityWeatherModel.self, router: WeatherAPIRequest.currentWeather(lat: cityData.coord.lat, lon: cityData.coord.lon))
                     .catch { error in
