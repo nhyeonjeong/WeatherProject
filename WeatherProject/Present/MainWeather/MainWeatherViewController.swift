@@ -40,11 +40,16 @@ final class MainWeatherViewController: BaseViewController {
         inputFetchCityWeatherTrigger.onNext(CityModel.seoulCity)
         inputFetchTimeForcastTrigger.onNext(CityModel.seoulCity)
         
-        reconnectTask = {
+        // 네트워크 단절 시 대응
+        NWPathMonitorManager.shared.monitorNetworkStatus(reconnectTask: {
+            print("재연결 후 동작")
             let selectedCity: CityModel? = UserDefaultManager.shared.getSelectedCityModel()
             self.inputFetchCityWeatherTrigger.onNext(selectedCity ?? CityModel.seoulCity)
             self.inputFetchTimeForcastTrigger.onNext(selectedCity ?? CityModel.seoulCity)
-        }
+        }, notConnectTask: {
+            print("통신 끊긴 후 동작")
+            self.mainView.makeToast("네트워크 연결이 끊겼습니다", duration: 1.0, position: .top)
+        })
     }
     private func bind() {
         searchBarTapGesture.rx.event
