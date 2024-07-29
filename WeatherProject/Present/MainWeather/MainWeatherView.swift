@@ -9,28 +9,6 @@ import MapKit
 import SnapKit
 import UIKit
 
-extension UIView {
-    func setSkeletonableForAllSubviews() {
-        self.isSkeletonable = true
-        for subview in self.subviews {
-            subview.setSkeletonableForAllSubviews()
-        }
-    }
-
-    func showSkeletons() {
-        self.showSkeleton()
-        for subview in self.subviews {
-            subview.showSkeletons()
-        }
-    }
-
-    func hideSkeletons() {
-        self.hideSkeleton()
-        for subview in self.subviews {
-            subview.hideSkeletons()
-        }
-    }
-}
 final class MainWeatherView: BaseView {
     enum SectionBox: CaseIterable {
         case timeForcast
@@ -266,8 +244,12 @@ extension MainWeatherView {
         configureUserInteractionEnabled(value: false)
     }
     func removeSkeletonView() {
-        contentView.hideSkeleton()
         configureUserInteractionEnabled(value: true)
+        guard NWPathMonitorManager.shared.isConnected == false else {
+            self.makeToast("네트워크 연결이 끊겼습니다", duration: 2.0, position: .top)
+            return
+        }
+        contentView.hideSkeleton()
     }
     func configureUserInteractionEnabled(value: Bool) {
         searchBar.isUserInteractionEnabled = value

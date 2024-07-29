@@ -18,7 +18,7 @@ class BaseViewController: UIViewController {
         NWPathMonitorManager.shared.monitorNetworkStatus(reconnectTask: {
             reconnectTask?()
         }, notConnectTask: {
-            self.view.makeToast("네트워크 연결이 끊겼습니다", duration: 1.0, position: .top)
+            self.view.makeToast("네트워크 연결이 끊겼습니다", duration: 2.0, position: .top)
         })
     }
     func configureView() {
