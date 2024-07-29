@@ -57,6 +57,9 @@
 		8BA006622C563F0C00251A95 /* DateFormatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA006612C563F0C00251A95 /* DateFormatManager.swift */; };
 		8BA006642C5648E800251A95 /* TimeForcastDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA006632C5648E800251A95 /* TimeForcastDTO.swift */; };
 		8BA006662C564B9E00251A95 /* DayForcastDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA006652C564B9E00251A95 /* DayForcastDTO.swift */; };
+		8BC6AF5A2C57C6ED005C70E4 /* loadingLottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BC6AF592C57C6ED005C70E4 /* loadingLottie.json */; };
+		8BC6AF5D2C57C81A005C70E4 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 8BC6AF5C2C57C81A005C70E4 /* Lottie */; };
+		8BC6AF5F2C57CA10005C70E4 /* LoadingToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC6AF5E2C57CA10005C70E4 /* LoadingToastView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -105,6 +108,8 @@
 		8BA006612C563F0C00251A95 /* DateFormatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatManager.swift; sourceTree = "<group>"; };
 		8BA006632C5648E800251A95 /* TimeForcastDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeForcastDTO.swift; sourceTree = "<group>"; };
 		8BA006652C564B9E00251A95 /* DayForcastDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayForcastDTO.swift; sourceTree = "<group>"; };
+		8BC6AF592C57C6ED005C70E4 /* loadingLottie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loadingLottie.json; sourceTree = "<group>"; };
+		8BC6AF5E2C57CA10005C70E4 /* LoadingToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingToastView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +124,7 @@
 				8B6AD4EF2C53FE1C00E7BB8E /* RxCocoa in Frameworks */,
 				8B6AD4F32C53FE1C00E7BB8E /* RxSwift in Frameworks */,
 				8B6AD4EC2C53FDEE00E7BB8E /* SnapKit in Frameworks */,
+				8BC6AF5D2C57C81A005C70E4 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +226,7 @@
 			children = (
 				8B6AD4FF2C54081800E7BB8E /* CustomSearchBar.swift */,
 				8BA006582C55FEB300251A95 /* MainPointBoxView.swift */,
+				8BC6AF5E2C57CA10005C70E4 /* LoadingToastView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -236,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				8B6AD5052C54129400E7BB8E /* reduced_citylist.json */,
+				8BC6AF592C57C6ED005C70E4 /* loadingLottie.json */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -336,6 +344,7 @@
 				8B6AD4F52C53FE2400E7BB8E /* Alamofire */,
 				8B6AD5132C548F1B00E7BB8E /* Toast */,
 				8B94A0622C575D8900B7D9FB /* SkeletonView */,
+				8BC6AF5C2C57C81A005C70E4 /* Lottie */,
 			);
 			productName = WeatherProject;
 			productReference = 8B6AD4B12C53DFD000E7BB8E /* WeatherProject.app */;
@@ -371,6 +380,7 @@
 				8B6AD4F42C53FE2400E7BB8E /* XCRemoteSwiftPackageReference "Alamofire" */,
 				8B6AD5122C548F1B00E7BB8E /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				8B94A0612C575D8900B7D9FB /* XCRemoteSwiftPackageReference "SkeletonView" */,
+				8BC6AF5B2C57C81A005C70E4 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 8B6AD4B22C53DFD000E7BB8E /* Products */;
 			projectDirPath = "";
@@ -391,6 +401,7 @@
 				8B6AD4C12C53DFD200E7BB8E /* LaunchScreen.storyboard in Resources */,
 				8B6AD4BE2C53DFD200E7BB8E /* Assets.xcassets in Resources */,
 				8B6AD4BC2C53DFD000E7BB8E /* Main.storyboard in Resources */,
+				8BC6AF5A2C57C6ED005C70E4 /* loadingLottie.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,6 +438,7 @@
 				8B6AD50A2C54140F00E7BB8E /* CityTableViewCell.swift in Sources */,
 				8BA006622C563F0C00251A95 /* DateFormatManager.swift in Sources */,
 				8B6AD4D42C53F57B00E7BB8E /* BaseView.swift in Sources */,
+				8BC6AF5F2C57CA10005C70E4 /* LoadingToastView.swift in Sources */,
 				8BA0065B2C56161C00251A95 /* BottomCollectionViewCell.swift in Sources */,
 				8BA006662C564B9E00251A95 /* DayForcastDTO.swift in Sources */,
 				8BA006572C5570EF00251A95 /* BaseCollectionViewCell.swift in Sources */,
@@ -713,6 +725,14 @@
 				minimumVersion = 1.31.0;
 			};
 		};
+		8BC6AF5B2C57C81A005C70E4 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -750,6 +770,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8B94A0612C575D8900B7D9FB /* XCRemoteSwiftPackageReference "SkeletonView" */;
 			productName = SkeletonView;
+		};
+		8BC6AF5C2C57C81A005C70E4 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8BC6AF5B2C57C81A005C70E4 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

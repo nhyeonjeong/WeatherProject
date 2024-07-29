@@ -235,6 +235,8 @@ extension MainWeatherView {
         tempMinMaxLabel.text = "최고: \(currentWeather?.temp_max ?? 0)°  |  최저: \(currentWeather?.temp_min ?? 0)°"
         
         viewUpToTop() // 스크롤뷰 제일 위로 올리기
+        hideToast() // 토스트 숨기기
+        configureUserInteractionEnabled(value: true)
     }
     
     func addAnnotationWithMoveCamera(_ city: City?, message: String? = nil) {
@@ -261,11 +263,14 @@ extension MainWeatherView {
     }
     func showSkeletonView() {
         contentView.showAnimatedGradientSkeleton()
-        searchBar.isUserInteractionEnabled = false
+        configureUserInteractionEnabled(value: false)
     }
     func removeSkeletonView() {
         contentView.hideSkeleton()
-        searchBar.isUserInteractionEnabled = true
+        configureUserInteractionEnabled(value: true)
+    }
+    func configureUserInteractionEnabled(value: Bool) {
+        searchBar.isUserInteractionEnabled = value
     }
 }
 

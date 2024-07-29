@@ -9,6 +9,7 @@ import RxCocoa
 import RxSwift
 import SkeletonView
 import UIKit
+import Toast
 
 final class MainWeatherViewController: BaseViewController {
     
@@ -52,6 +53,9 @@ final class MainWeatherViewController: BaseViewController {
                 owner.present(WeatherSearchViewController(viewModel: WeatherSearchViewModel(), clickedCityData: { cityData in
                     owner.inputFetchCityWeatherTrigger.onNext(cityData)
                     owner.inputFetchTimeForcastTrigger.onNext(cityData)
+                    let loadingToastView = LoadingToastView(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+                    owner.mainView.showToast(loadingToastView, duration: .infinity, position: .center)
+                    owner.mainView.configureUserInteractionEnabled(value: false)
                 }), animated: true)
             }.disposed(by: disposeBag)
         
