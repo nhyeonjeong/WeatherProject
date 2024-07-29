@@ -12,6 +12,6 @@ struct TimeForcastItem {
     let descriptionImageString: String
     let temp: String
     var timeString: String {
-        return DateFormatManager.utcToTimeString(utcString: utcTime) ?? "-"
+        return DateFormatManager.shared.utcToTimeString(utcString: utcTime) ?? "-"
     }
 }

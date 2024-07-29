@@ -8,8 +8,11 @@
 import Foundation
 
 final class DateFormatManager {
-    static func utcToTimeString(utcString: String) -> String? {
-        let formatter = DateFormatter()
+    
+    static let shared = DateFormatManager()
+    let formatter = DateFormatter()
+    
+    func utcToTimeString(utcString: String) -> String? {
         formatter.locale = Locale(identifier: "ko_KR")
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         formatter.timeZone = TimeZone(abbreviation: "UTC")
@@ -22,8 +25,7 @@ final class DateFormatManager {
         return haha
     }
     /// utcString에서 요일(한글) 반환
-    static func getWeekData(utcString: String) -> String? {
-        let formatter = DateFormatter()
+    func getWeekData(utcString: String) -> String? {
         formatter.locale = Locale(identifier: "ko_KR")
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         formatter.timeZone = TimeZone(abbreviation: "UTC")

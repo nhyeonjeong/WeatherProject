@@ -91,7 +91,7 @@ struct City: Decodable {
 
 extension CityWeatherModel {
     private func getFiveDaysWeathers() -> [DayForcastItem] {
-        guard var weekString = DateFormatManager.getWeekData(utcString: list[0].dt_txt) else {
+        guard var weekString = DateFormatManager.shared.getWeekData(utcString: list[0].dt_txt) else {
             return []
         }
         var data: [DayForcastItem] = []
@@ -102,7 +102,7 @@ extension CityWeatherModel {
             if index != 0 && index % 8 == 0 {
                 let weatheIcon = choiceWeatherIcon(dayWeatherList)
                 data.append(DayForcastItem(week: weekString, descriptionImageString: weatheIcon.rawValue, averageTempMin: tempMin, averageTempMax: tempMax))
-                guard let week = DateFormatManager.getWeekData(utcString: list[index].dt_txt) else {
+                guard let week = DateFormatManager.shared.getWeekData(utcString: list[index].dt_txt) else {
                     return data
                 }
                 weekString = week
