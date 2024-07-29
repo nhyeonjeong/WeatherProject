@@ -7,6 +7,7 @@
 
 import RxCocoa
 import RxSwift
+import SkeletonView
 import UIKit
 
 final class MainWeatherViewController: BaseViewController {
@@ -32,6 +33,7 @@ final class MainWeatherViewController: BaseViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        mainView.showSkeletonView()
         bind()
         // initial data
         UserDefaultManager.shared.saveSelectedCityModel(city: CityModel.seoulCity)
@@ -60,6 +62,8 @@ final class MainWeatherViewController: BaseViewController {
         output.outputCityWeather
             .drive(with: self) { owner, weather in
                 owner.mainView.configureCurrentWeather(weather)
+                owner.mainView.removeSkeletonView()
+                
             }.disposed(by: disposeBag)
         
         // 3시간마다의 날씨

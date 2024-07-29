@@ -9,6 +9,28 @@ import MapKit
 import SnapKit
 import UIKit
 
+extension UIView {
+    func setSkeletonableForAllSubviews() {
+        self.isSkeletonable = true
+        for subview in self.subviews {
+            subview.setSkeletonableForAllSubviews()
+        }
+    }
+
+    func showSkeletons() {
+        self.showSkeleton()
+        for subview in self.subviews {
+            subview.showSkeletons()
+        }
+    }
+
+    func hideSkeletons() {
+        self.hideSkeleton()
+        for subview in self.subviews {
+            subview.hideSkeletons()
+        }
+    }
+}
 final class MainWeatherView: BaseView {
     enum SectionBox: CaseIterable {
         case timeForcast
@@ -52,7 +74,12 @@ final class MainWeatherView: BaseView {
     // searchBar
     let searchBar = CustomSearchBar(backColor: .white.withAlphaComponent(0.8))
     // 최상단 최근 날씨
-    private let mainWeatherView = UIView()
+    let mainWeatherView = {
+        let view = UIView()
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 10
+        return view
+    }()
     private let cityNameLabel = UILabel().configureTextStyle(align: .center, fontSize: 28)
     private let currentTempLabel = UILabel().configureTextStyle(align: .center, fontSize: 70)
     private let currentDescriptionLabel = UILabel().configureTextStyle(align: .center, fontSize: 20)
@@ -113,6 +140,15 @@ final class MainWeatherView: BaseView {
         view.isScrollEnabled = false
         return view
     }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        scrollView.subviews.forEach { $0.isSkeletonable = true }
+        contentView.subviews.forEach { $0.isSkeletonable = true }
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func configureHierarchy() {
         mainWeatherView.addSubViews([cityNameLabel, currentTempLabel, currentDescriptionLabel, tempMinMaxLabel])
@@ -181,7 +217,7 @@ final class MainWeatherView: BaseView {
         }
     }
     override func configureView() {
-//        self.backgroundColor = Constants.Color.light
+        self.backgroundColor = .white
     }
 }
 
@@ -217,6 +253,15 @@ extension MainWeatherView {
         let span = MKCoordinateSpan(latitudeDelta: 2, longitudeDelta: 2) // 줌 레벨 설정
         let region = MKCoordinateRegion(center: location, span: span)
         mapView.setRegion(region, animated: true)
+    }
+    
+    func showSkeletonView() {
+        contentView.showAnimatedGradientSkeleton()
+        searchBar.isUserInteractionEnabled = false
+    }
+    func removeSkeletonView() {
+        contentView.hideSkeleton()
+        searchBar.isUserInteractionEnabled = true
     }
 }
 

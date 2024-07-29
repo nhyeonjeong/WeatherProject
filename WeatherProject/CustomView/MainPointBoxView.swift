@@ -68,4 +68,8 @@ class MainPointBoxView: BaseView {
         self.headerUnderLine.backgroundColor = Constants.Color.text.withAlphaComponent(0.5)
         self.headerTextLabel?.text = boxType.boxTitle
     }
+    func configureSkeleton() {
+        headerTextLabel?.isSkeletonable = true
+        contentView.isSkeletonable = true
+    }
 }
