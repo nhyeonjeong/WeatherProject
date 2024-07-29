@@ -26,31 +26,31 @@ struct CityWeatherModel: Decodable {
     let city: City
     
     // 공통으로 쓰일 새로운 구조체
-    var newWeatherList: NewCityWeatherModel {
+    var newWeatherList: CityWeatherDTO {
         let weatherList = list.map { list in
-            return NewMain(temp: list.main.temp, temp_min: list.main.temp_min, temp_max: list.main.temp_max, humidity: list.main.humidity, clouds: list.clouds.all, windSpeed: list.wind.speed, dt_txt: list.dt_txt, main: list.weather[0].main, description: list.weather[0].description, icon: list.weather[0].icon)
+            return WeatherList(temp: list.main.temp, temp_min: list.main.temp_min, temp_max: list.main.temp_max, humidity: list.main.humidity, clouds: list.clouds.all, windSpeed: list.wind.speed, dt_txt: list.dt_txt, main: list.weather[0].main, description: list.weather[0].description, icon: list.weather[0].icon)
         }
-        return NewCityWeatherModel(city: city, weatherList: weatherList)
+        return CityWeatherDTO(city: city, weatherList: weatherList)
     }
 
-    var averageList: [MainBottomCollectionViewSectionData] {
+    var averageList: [HumidityCloudWindDTO] {
         let averageHumanity = Double(list.reduce(0) { $0 + ($1.main.humidity ?? 0)}) / Double(list.count)
         let averageCloud = Double(list.reduce(0) { $0 + $1.clouds.all}) / Double(list.count)
         let averageWindSpeed = list.reduce(0.0) { $0 + $1.wind.speed} / Double(list.count)
-        return [MainBottomCollectionViewSectionData(type: .humanity, number: averageHumanity),
-                MainBottomCollectionViewSectionData(type: .cloud, number: averageCloud),
-                MainBottomCollectionViewSectionData(type: .windSpeed, number: averageWindSpeed)]
+        return [HumidityCloudWindDTO(type: .humanity, number: averageHumanity),
+                HumidityCloudWindDTO(type: .cloud, number: averageCloud),
+                HumidityCloudWindDTO(type: .windSpeed, number: averageWindSpeed)]
     }
     
-    var timeForcastItems: [TimeForcastItem] {
-        let data: [TimeForcastItem] = list.map { list in
+    var timeForcastItems: [TimeForcastDTO] {
+        let data: [TimeForcastDTO] = list.map { list in
             let icon = list.weather[0].icon
-            return TimeForcastItem(utcTime:list.dt_txt, descriptionImageString: icon.replacingOccurrences(of: "n", with: "d"), temp: "\(Int(list.main.temp))°")
+            return TimeForcastDTO(utcTime:list.dt_txt, descriptionImageString: icon.replacingOccurrences(of: "n", with: "d"), temp: "\(Int(list.main.temp))°")
         }
         return data
     }
     
-    var fiveDayForcastItems: [DayForcastItem] {
+    var fiveDayForcastItems: [DayForcastDTO] {
         return getFiveDaysWeathers()
     }
 }
@@ -90,18 +90,18 @@ struct City: Decodable {
 
 
 extension CityWeatherModel {
-    private func getFiveDaysWeathers() -> [DayForcastItem] {
+    private func getFiveDaysWeathers() -> [DayForcastDTO] {
         guard var weekString = DateFormatManager.shared.getWeekData(utcString: list[0].dt_txt) else {
             return []
         }
-        var data: [DayForcastItem] = []
+        var data: [DayForcastDTO] = []
         var tempMin: Double = 100
         var tempMax: Double = -100
         var dayWeatherList: [WeatherIcon] = []
         for (index, weather) in list.enumerated() {
             if index != 0 && index % 8 == 0 {
                 let weatheIcon = choiceWeatherIcon(dayWeatherList)
-                data.append(DayForcastItem(week: weekString, descriptionImageString: weatheIcon.rawValue, averageTempMin: tempMin, averageTempMax: tempMax))
+                data.append(DayForcastDTO(week: weekString, descriptionImageString: weatheIcon.rawValue, averageTempMin: tempMin, averageTempMax: tempMax))
                 guard let week = DateFormatManager.shared.getWeekData(utcString: list[index].dt_txt) else {
                     return data
                 }
@@ -116,7 +116,7 @@ extension CityWeatherModel {
             dayWeatherList.append(WeatherIcon(rawValue: weather.weather[0].icon.replacingOccurrences(of: "n", with: "d")) ?? .sunny)
         }
         let weatheIcon = choiceWeatherIcon(dayWeatherList)
-        data.append(DayForcastItem(week: weekString, descriptionImageString: weatheIcon.rawValue, averageTempMin: tempMin, averageTempMax: tempMax))
+        data.append(DayForcastDTO(week: weekString, descriptionImageString: weatheIcon.rawValue, averageTempMin: tempMin, averageTempMax: tempMax))
         data[0].week = "오늘"
         return data
     }

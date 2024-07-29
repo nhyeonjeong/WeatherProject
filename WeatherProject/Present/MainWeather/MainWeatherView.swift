@@ -222,7 +222,7 @@ final class MainWeatherView: BaseView {
 }
 
 extension MainWeatherView {
-    func configureCurrentWeather(_ data: NewCityWeatherModel?) {
+    func configureCurrentWeather(_ data: CityWeatherDTO?) {
         // 배경
         let currentWeather = data?.weatherList.first
         if let currentWeather {

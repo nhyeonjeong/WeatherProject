@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DayForcastItem {
+struct DayForcastDTO {
     var week: String
     let descriptionImageString: String
     let averageTempMin: Double

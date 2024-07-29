@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct NewCityWeatherModel {
+struct CityWeatherDTO {
     let city: City
-    let weatherList: [NewMain]
+    let weatherList: [WeatherList]
 }
-struct NewMain {
+struct WeatherList {
     let temp: Double
     let temp_min: Double
     let temp_max: Double

@@ -8,7 +8,7 @@
 import Foundation
 
 /// Main화면 하단 습도, 구름, 바람 속도 데이터
-struct MainBottomCollectionViewSectionData {
+struct HumidityCloudWindDTO {
     let type: BottomCollectionViewCell.Section
     let number: Double
     var title: String {

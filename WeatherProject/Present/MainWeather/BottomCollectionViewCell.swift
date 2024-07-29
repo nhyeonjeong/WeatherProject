@@ -57,7 +57,7 @@ final class BottomCollectionViewCell: BaseCollectionViewCell {
 }
 
 extension BottomCollectionViewCell {
-    func configureCell(_ data: MainBottomCollectionViewSectionData) {
+    func configureCell(_ data: HumidityCloudWindDTO) {
         titleLabel.text = data.title
         contentLabel.text = data.content
     }

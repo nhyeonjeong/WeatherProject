@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TimeForcastItem {
+struct TimeForcastDTO {
     let utcTime: String
     let descriptionImageString: String
     let temp: String

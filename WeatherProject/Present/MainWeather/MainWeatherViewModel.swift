@@ -16,10 +16,10 @@ final class MainWeatherViewModel: InputOutput {
         let inputFetchTimeForcastTrigger: PublishSubject<CityModel>
     }
     struct Output {
-        let outputCityWeather: Driver<NewCityWeatherModel?>
-        let outputBottomCollectionViewItems: Driver<[MainBottomCollectionViewSectionData]?>
-        let outputTimeForcastCollectionViewItems: Driver<[TimeForcastItem]?>
-        let outputDayForcastTableViewItems: Driver<[DayForcastItem]?>
+        let outputCityWeather: Driver<CityWeatherDTO?>
+        let outputBottomCollectionViewItems: Driver<[HumidityCloudWindDTO]?>
+        let outputTimeForcastCollectionViewItems: Driver<[TimeForcastDTO]?>
+        let outputDayForcastTableViewItems: Driver<[DayForcastDTO]?>
         let outputMapLocation: Driver<City?>
         let outputErrorMessage: Driver<String>
     }
@@ -27,10 +27,10 @@ final class MainWeatherViewModel: InputOutput {
     let disposeBag = DisposeBag()
     
     func transform(input: Input) -> Output {
-        let outputCityWeather: PublishRelay<NewCityWeatherModel?> = PublishRelay()
-        let outputBottomCollectionViewItems: PublishRelay<[MainBottomCollectionViewSectionData]?> = PublishRelay()
-        let outputTimeForcastCollectionViewItems: PublishRelay<[TimeForcastItem]?> = PublishRelay()
-        let outputDayForcastTableViewItems: PublishRelay<[DayForcastItem]?> = PublishRelay()
+        let outputCityWeather: PublishRelay<CityWeatherDTO?> = PublishRelay()
+        let outputBottomCollectionViewItems: PublishRelay<[HumidityCloudWindDTO]?> = PublishRelay()
+        let outputTimeForcastCollectionViewItems: PublishRelay<[TimeForcastDTO]?> = PublishRelay()
+        let outputDayForcastTableViewItems: PublishRelay<[DayForcastDTO]?> = PublishRelay()
         let outputMapLocation: PublishRelay<City?> = PublishRelay()
         let outputErrorMessage: PublishRelay<String> = PublishRelay()
         

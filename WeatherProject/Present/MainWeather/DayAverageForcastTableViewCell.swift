@@ -41,7 +41,7 @@ final class DayAverageForcastTableViewCell: BaseTableViewCell {
 }
 
 extension DayAverageForcastTableViewCell {
-    func configureCell(_ data: DayForcastItem) {
+    func configureCell(_ data: DayForcastDTO) {
         weekLabel.text = data.week
         weatherImageView.image = UIImage(named: data.descriptionImageString)
         tempLabel.text = data.averageTempMinMax
