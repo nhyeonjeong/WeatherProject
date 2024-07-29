@@ -12,6 +12,8 @@ final class DateFormatManager {
     static let shared = DateFormatManager()
     let formatter = DateFormatter()
     
+    private init() { }
+    
     func utcToTimeString(utcString: String) -> String? {
         formatter.locale = Locale(identifier: "ko_KR")
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
